@@ -1,6 +1,6 @@
 ﻿namespace PrimeSolutions
 {
-    partial class frm_PurchaseForm
+    partial class frm_SaleForm
     {
         /// <summary>
         /// Required designer variable.
@@ -381,54 +381,47 @@
             // 
             // bttn_Delete
             // 
-            this.bttn_Delete.BackColor = System.Drawing.Color.Red;
-            this.bttn_Delete.ForeColor = System.Drawing.Color.White;
+            this.bttn_Delete.ForeColor = System.Drawing.Color.Red;
             this.bttn_Delete.Location = new System.Drawing.Point(422, 5);
             this.bttn_Delete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Delete.Name = "bttn_Delete";
             this.bttn_Delete.Size = new System.Drawing.Size(76, 28);
             this.bttn_Delete.TabIndex = 3;
             this.bttn_Delete.Text = "Delete";
-            this.bttn_Delete.UseVisualStyleBackColor = false;
+            this.bttn_Delete.UseVisualStyleBackColor = true;
             // 
             // bttn_Reset
             // 
-            this.bttn_Reset.BackColor = System.Drawing.Color.Blue;
-            this.bttn_Reset.ForeColor = System.Drawing.Color.White;
+            this.bttn_Reset.ForeColor = System.Drawing.Color.Blue;
             this.bttn_Reset.Location = new System.Drawing.Point(292, 5);
             this.bttn_Reset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Reset.Name = "bttn_Reset";
             this.bttn_Reset.Size = new System.Drawing.Size(76, 28);
             this.bttn_Reset.TabIndex = 2;
             this.bttn_Reset.Text = "Reset";
-            this.bttn_Reset.UseVisualStyleBackColor = false;
+            this.bttn_Reset.UseVisualStyleBackColor = true;
             // 
             // bttn_Update
             // 
-            this.bttn_Update.BackColor = System.Drawing.Color.Gold;
-            this.bttn_Update.ForeColor = System.Drawing.Color.Black;
+            this.bttn_Update.ForeColor = System.Drawing.SystemColors.Highlight;
             this.bttn_Update.Location = new System.Drawing.Point(154, 5);
             this.bttn_Update.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Update.Name = "bttn_Update";
             this.bttn_Update.Size = new System.Drawing.Size(80, 28);
             this.bttn_Update.TabIndex = 1;
             this.bttn_Update.Text = "Update";
-            this.bttn_Update.UseVisualStyleBackColor = false;
+            this.bttn_Update.UseVisualStyleBackColor = true;
             // 
             // bttn_Add
             // 
-            this.bttn_Add.BackColor = System.Drawing.Color.YellowGreen;
-            this.bttn_Add.FlatAppearance.BorderSize = 0;
-            this.bttn_Add.ForeColor = System.Drawing.Color.Black;
-            this.bttn_Add.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bttn_Add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.bttn_Add.Location = new System.Drawing.Point(28, 5);
             this.bttn_Add.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttn_Add.Name = "bttn_Add";
             this.bttn_Add.Size = new System.Drawing.Size(76, 28);
             this.bttn_Add.TabIndex = 0;
             this.bttn_Add.Text = "Add";
-            this.bttn_Add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bttn_Add.UseVisualStyleBackColor = false;
+            this.bttn_Add.UseVisualStyleBackColor = true;
             this.bttn_Add.Click += new System.EventHandler(this.bttn_Add_Click);
             this.bttn_Add.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bttn_Add_KeyDown);
             // 
@@ -826,7 +819,6 @@
             // 
             // pnl_Picture
             // 
-            this.pnl_Picture.AutoSize = true;
             this.pnl_Picture.Location = new System.Drawing.Point(528, 51);
             this.pnl_Picture.Name = "pnl_Picture";
             this.pnl_Picture.Size = new System.Drawing.Size(461, 284);
@@ -853,7 +845,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Form";
             this.Load += new System.EventHandler(this.frm_PurchaseForm_Load);
-            this.Leave += new System.EventHandler(this.frm_PurchaseForm_Leave);
             this.pnl_Main.ResumeLayout(false);
             this.pnl_Top.ResumeLayout(false);
             this.pnl_Top.PerformLayout();
@@ -867,7 +858,6 @@
             this.pnl_PaymentOpt.PerformLayout();
             this.pnl_Bottom.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

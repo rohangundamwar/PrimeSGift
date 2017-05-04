@@ -9,9 +9,9 @@ using System.Text;
 using System.Windows.Forms;
 namespace PrimeSolutions
 {
-    public partial class frm_PurchaseForm : Form
+    public partial class frm_SaleForm : Form
     {
-        public frm_PurchaseForm()
+        public frm_SaleForm()
         {
             InitializeComponent();
         }
@@ -175,7 +175,7 @@ namespace PrimeSolutions
         private void bttn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
-            
+            this.Close();
         }
 
         private void txt_PurchaseAmt_KeyDown(object sender, KeyEventArgs e)
@@ -328,11 +328,6 @@ namespace PrimeSolutions
             txt_Qty.Text = "0";
             txt_SellingAmt.Text = "0";
             txt_PurchaseAmt.Text = "0";
-        }
-
-        private void frm_PurchaseForm_Leave(object sender, EventArgs e)
-        {
-            
         }
     }
 }
