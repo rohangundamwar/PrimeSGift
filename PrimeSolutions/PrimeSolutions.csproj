@@ -56,14 +56,43 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sale\frm_SaleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sale\frm_SaleForm.Designer.cs">
+      <DependentUpon>frm_SaleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\frm_PurchaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchase\frm_PurchaceForm.Designer.cs">
+      <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\PrimeSolutions.MainForm.resources" />
+    <EmbeddedResource Include="obj\Debug\PrimeSolutions.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sale\frm_SaleForm.resx">
+      <DependentUpon>frm_SaleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\frm_PurchaceForm.resx">
+      <DependentUpon>frm_PurchaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="bin\Debug\PrimeSolutions.exe.config" />
+    <None Include="bin\Debug\PrimeSolutions.vshost.exe.config" />
+    <None Include="bin\Debug\PrimeSolutions.vshost.exe.manifest" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\PrimeSolutions.csproj.GenerateResource.Cache" />
+    <None Include="obj\Debug\PrimeSolutions.csprojResolveAssemblyReference.cache" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,11 +108,31 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Dataset\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\PrimeSolutions.exe" />
+    <Content Include="bin\Debug\PrimeSolutions.pdb" />
+    <Content Include="bin\Debug\PrimeSolutions.vshost.exe" />
+    <Content Include="obj\Debug\PrimeSolutions.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PrimeSolutions.exe" />
+    <Content Include="obj\Debug\PrimeSolutions.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\Applications.png" />
+    <None Include="Resources\Add.png" />
+    <Content Include="Resources\Settings.png" />
+    <None Include="Resources\Settings1.png" />
+    <None Include="Resources\rich.png" />
+    <None Include="Resources\cart-5.png" />
+    <None Include="Resources\cart-13.png" />
+    <None Include="Resources\presentation.png" />
+    <None Include="Resources\barcode.png" />
+    <None Include="Resources\delivery-cart.png" />
     <Content Include="Resources\Prime_logo.png" />
     <None Include="Resources\Prime_logo1.png" />
   </ItemGroup>
