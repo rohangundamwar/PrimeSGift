@@ -125,6 +125,7 @@
     <None Include="Resources\Close.png" />
     <None Include="Resources\Applications.png" />
     <None Include="Resources\Add.png" />
+    <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\Settings.png" />
     <None Include="Resources\Settings1.png" />
     <None Include="Resources\rich.png" />

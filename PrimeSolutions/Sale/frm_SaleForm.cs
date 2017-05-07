@@ -23,6 +23,7 @@ namespace PrimeSolutions
         {
             Masterclear();
             cmb_Name.Select();
+            this.BringToFront();
         //    txt_BillNo.Text = _objSQLHelper.gmGetMstID("P", "0");
         }
 
@@ -44,7 +45,7 @@ namespace PrimeSolutions
             txt_TotalAmt.ResetText();
             txt_Vat.ResetText();
             txt_SellingAmt.Text = "0";
-            txt_PurchaseAmt.Text = "0";
+            txt_BarcodeNo.Text = "0";
             
         }
 
@@ -110,7 +111,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_PurchaseAmt.Focus();
+                txt_SellingAmt.Select();
             }
         }
 
@@ -120,7 +121,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Amt.Focus();
+                cmb_Category.Select();
             }
         }
         
@@ -168,13 +169,12 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                bttn_Purchase.Focus();
+                bttn_Sale.Focus();
             }
         }
 
         private void bttn_Close_Click(object sender, EventArgs e)
         {
-            this.Close();
             this.Close();
         }
 
@@ -182,7 +182,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_SellingAmt.Focus();
+                txt_Qty.Focus();
             }
         }
 
@@ -190,7 +190,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Qty.Focus();
+                txt_Amt.Focus();
             }
         }
 
@@ -244,7 +244,7 @@ namespace PrimeSolutions
 
         private void txt_PurchaseAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationDigitWithPoint(e, txt_PurchaseAmt.Text);
+            _objSimpal.ValidationDigitWithPoint(e, txt_BarcodeNo.Text);
         }
 
         private void txt_SellingAmt_KeyPress(object sender, KeyPressEventArgs e)
@@ -291,7 +291,7 @@ namespace PrimeSolutions
         {
             try
             {
-                txt_Amt.Text = (Convert.ToDouble(txt_PurchaseAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                txt_Amt.Text = (Convert.ToDouble(txt_BarcodeNo.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
             }
             catch { }
         }
@@ -300,7 +300,7 @@ namespace PrimeSolutions
         {
             try
             {
-                txt_Amt.Text = (Convert.ToDouble(txt_PurchaseAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                txt_Amt.Text = (Convert.ToDouble(txt_BarcodeNo.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
             }
             catch (Exception ex)
             { }
@@ -311,14 +311,16 @@ namespace PrimeSolutions
             try
             {
                 
-                dgv_ItemInfo.Rows.Add(cmb_Category.Text, cmb_SubCategory.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_SellingAmt.Text, txt_Amt.Text);
+                dgv_ItemInfo.Rows.Add(cmb_Category.Text, cmb_SubCategory.Text, txt_BarcodeNo.Text, txt_Qty.Text, txt_SellingAmt.Text, txt_Amt.Text);
                 Clear();
                 
             }
             catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
+            Calculate();
+            
         }
 
         private void Clear()
@@ -327,7 +329,23 @@ namespace PrimeSolutions
             cmb_SubCategory.ResetText();
             txt_Qty.Text = "0";
             txt_SellingAmt.Text = "0";
-            txt_PurchaseAmt.Text = "0";
+            txt_BarcodeNo.Text = " ";
         }
+
+        private void Calculate()
+        {
+            int total = 0;
+
+            foreach (DataGridViewRow row in dgv_ItemInfo.Rows)
+            {
+                if (!row.IsNewRow && row.Cells["SellingAmt"].Value != null)
+                {
+                    total += (int)row.Cells["SellingAmt"].Value;
+                }
+            }
+
+            txt_TotalAmt.Text = total.ToString();
+        }
+        
     }
 }

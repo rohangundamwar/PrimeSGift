@@ -30,6 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lbl_developer = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.saleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,11 +58,6 @@
             this.errorReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prefrencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lbl_developer = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -68,6 +68,7 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.Gainsboro;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saleToolStripMenuItem,
             this.purchaseToolStripMenuItem,
@@ -78,9 +79,58 @@
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(126, 351);
+            this.menuStrip1.Size = new System.Drawing.Size(134, 351);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(134, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(535, 351);
+            this.panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Location = new System.Drawing.Point(7, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(528, 271);
+            this.panel2.TabIndex = 7;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.lbl_developer);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Location = new System.Drawing.Point(261, 283);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(274, 62);
+            this.panel3.TabIndex = 6;
+            // 
+            // lbl_developer
+            // 
+            this.lbl_developer.AutoSize = true;
+            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
+            this.lbl_developer.Name = "lbl_developer";
+            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
+            this.lbl_developer.TabIndex = 6;
+            this.lbl_developer.Text = "Developed and \r\nMaintained by";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.ErrorImage = null;
+            this.pictureBox2.Image = global::PrimeSolutions.Properties.Resources.Prime_logo;
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(92, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(174, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
             // 
             // saleToolStripMenuItem
             // 
@@ -88,7 +138,7 @@
             this.saleToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.cart_5;
             this.saleToolStripMenuItem.Name = "saleToolStripMenuItem";
             this.saleToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.saleToolStripMenuItem.Size = new System.Drawing.Size(113, 39);
+            this.saleToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.saleToolStripMenuItem.Text = "Sale";
             this.saleToolStripMenuItem.Click += new System.EventHandler(this.saleToolStripMenuItem_Click);
             // 
@@ -101,7 +151,7 @@
             this.purchaseToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.cart_13;
             this.purchaseToolStripMenuItem.Name = "purchaseToolStripMenuItem";
             this.purchaseToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(113, 39);
+            this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.purchaseToolStripMenuItem.Text = "Purchase";
             this.purchaseToolStripMenuItem.Click += new System.EventHandler(this.purchaseToolStripMenuItem_Click);
             // 
@@ -131,7 +181,7 @@
             this.accountingToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.rich;
             this.accountingToolStripMenuItem.Name = "accountingToolStripMenuItem";
             this.accountingToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.accountingToolStripMenuItem.Size = new System.Drawing.Size(113, 39);
+            this.accountingToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.accountingToolStripMenuItem.Text = "Accounting";
             // 
             // openingBalanceToolStripMenuItem
@@ -168,7 +218,7 @@
             this.reportToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.presentation;
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(113, 39);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.reportToolStripMenuItem.Text = "Report";
             // 
             // saleToolStripMenuItem1
@@ -234,7 +284,7 @@
             this.masterToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Applications;
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.masterToolStripMenuItem.Size = new System.Drawing.Size(113, 37);
+            this.masterToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.masterToolStripMenuItem.Text = "Master";
             // 
             // settingToolStripMenuItem
@@ -246,7 +296,7 @@
             this.settingToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Settings;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(113, 37);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.settingToolStripMenuItem.Text = "Setting";
             // 
             // errorReportToolStripMenuItem
@@ -267,58 +317,9 @@
             this.exitToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Close;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(113, 39);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(121, 44);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(126, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(543, 351);
-            this.panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.Location = new System.Drawing.Point(7, 6);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(528, 271);
-            this.panel2.TabIndex = 7;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.lbl_developer);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(261, 283);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(274, 62);
-            this.panel3.TabIndex = 6;
-            // 
-            // lbl_developer
-            // 
-            this.lbl_developer.AutoSize = true;
-            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
-            this.lbl_developer.Name = "lbl_developer";
-            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
-            this.lbl_developer.TabIndex = 6;
-            this.lbl_developer.Text = "Developed and \r\nMaintained by";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.ErrorImage = null;
-            this.pictureBox2.Image = global::PrimeSolutions.Properties.Resources.Prime_logo;
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(92, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(174, 50);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
             // 
             // MainForm
             // 

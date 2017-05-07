@@ -23,6 +23,7 @@ namespace PrimeSolutions
         {
             Masterclear();
             cmb_Name.Select();
+            this.BringToFront();
         //    txt_BillNo.Text = _objSQLHelper.gmGetMstID("P", "0");
         }
 
@@ -103,6 +104,10 @@ namespace PrimeSolutions
             if (e.KeyCode == Keys.Enter)
             {
                 cmb_SubCategory.Focus();
+            }
+            if (e.KeyCode == Keys.F10)
+            {
+                txt_PaidAmt.Focus();
             }
         }
 
@@ -198,9 +203,12 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                bttn_Add.Focus();
+                bttn_Add_Click(sender,e);
+                cmb_Category.Select();
+                Clear();
             }
         }
+        
 
         private void cmb_Name_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -319,6 +327,7 @@ namespace PrimeSolutions
             {
 
             }
+            Calculate();
         }
 
         private void Clear()
@@ -333,6 +342,26 @@ namespace PrimeSolutions
         private void frm_PurchaseForm_Leave(object sender, EventArgs e)
         {
             
+        }
+
+        private void frm_PurchaseForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void Calculate()
+        {
+            int total = 0;
+
+            for (int i = 0; i < dgv_ItemInfo.Rows.Count - 1; i++)
+            {
+                total += Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["PayAmount"]);
+            }
+
+            txt_TotalAmt.Text = total.ToString();
         }
     }
 }
