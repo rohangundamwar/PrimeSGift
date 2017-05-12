@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimeSolutions.Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -55,6 +56,25 @@ namespace PrimeSolutions
             panel2.Width = _form.Width;
             _form.Dock = DockStyle.Fill;
             _form.Show();
+        }
+
+        private void stockCheckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PurchaseCommon _p = new PurchaseCommon();
+            DataTable dt = _p.GetStock();
+            
+            dgv_stock.Visible = true;
+            dgv_stock.AutoGenerateColumns = true;
+            dgv_stock.DataSource = dt;
+            
+        }
+
+        private void dgv_stock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                dgv_stock.Visible = false;
+            }
         }
     }
 }
