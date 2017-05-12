@@ -35,14 +35,13 @@
             this.lbl_Date = new System.Windows.Forms.Label();
             this.lbl_Purchase = new System.Windows.Forms.Label();
             this.lbl_AccNo = new System.Windows.Forms.Label();
-            this.lbl_PurchaseFrom = new System.Windows.Forms.Label();
+            this.lbl_BillNo = new System.Windows.Forms.Label();
+            this.lbl_CustomerName = new System.Windows.Forms.Label();
             this.lbl_Add = new System.Windows.Forms.Label();
             this.lbl_ContactNo = new System.Windows.Forms.Label();
-            this.lbl_BillNo = new System.Windows.Forms.Label();
             this.pnl_SupplierInfo = new System.Windows.Forms.Panel();
             this.lbl_Balance = new System.Windows.Forms.Label();
             this.txt_MobileNo = new System.Windows.Forms.TextBox();
-            this.txt_BillNo = new System.Windows.Forms.TextBox();
             this.txt_ContactNo = new System.Windows.Forms.TextBox();
             this.txt_City = new System.Windows.Forms.TextBox();
             this.lbl_City = new System.Windows.Forms.Label();
@@ -67,6 +66,12 @@
             this.lbl_PurchaseAmt = new System.Windows.Forms.Label();
             this.lbl_SubCategory = new System.Windows.Forms.Label();
             this.dgv_ItemInfo = new System.Windows.Forms.DataGridView();
+            this.BarcodeNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
             this.txt_BalAmt = new System.Windows.Forms.TextBox();
             this.lbl_BalanceAmt = new System.Windows.Forms.Label();
@@ -79,16 +84,11 @@
             this.txt_TotalAmt = new System.Windows.Forms.TextBox();
             this.lbl_TotalAmt = new System.Windows.Forms.Label();
             this.pnl_Bottom = new System.Windows.Forms.Panel();
-            this.pnl_Picture = new System.Windows.Forms.Panel();
-            this.bttn_Sale = new System.Windows.Forms.Button();
-            this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
-            this.BarcodeNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bttn_Clear = new System.Windows.Forms.Button();
+            this.bttn_Sale = new System.Windows.Forms.Button();
+            this.panel = new System.Windows.Forms.Panel();
+            this.txt_BillNo = new System.Windows.Forms.Label();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -112,11 +112,13 @@
             // pnl_Top
             // 
             this.pnl_Top.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnl_Top.Controls.Add(this.txt_BillNo);
             this.pnl_Top.Controls.Add(this.txt_AccNo);
             this.pnl_Top.Controls.Add(this.dtp_Date);
             this.pnl_Top.Controls.Add(this.lbl_Date);
             this.pnl_Top.Controls.Add(this.lbl_Purchase);
             this.pnl_Top.Controls.Add(this.lbl_AccNo);
+            this.pnl_Top.Controls.Add(this.lbl_BillNo);
             this.pnl_Top.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Top.Location = new System.Drawing.Point(0, 0);
             this.pnl_Top.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -127,12 +129,12 @@
             // txt_AccNo
             // 
             this.txt_AccNo.AutoSize = true;
+            this.txt_AccNo.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.txt_AccNo.ForeColor = System.Drawing.Color.White;
             this.txt_AccNo.Location = new System.Drawing.Point(83, 17);
             this.txt_AccNo.Name = "txt_AccNo";
-            this.txt_AccNo.Size = new System.Drawing.Size(54, 19);
+            this.txt_AccNo.Size = new System.Drawing.Size(0, 19);
             this.txt_AccNo.TabIndex = 9;
-            this.txt_AccNo.Text = "label1";
             // 
             // dtp_Date
             // 
@@ -170,7 +172,7 @@
             // 
             this.lbl_AccNo.AutoSize = true;
             this.lbl_AccNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_AccNo.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_AccNo.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lbl_AccNo.Location = new System.Drawing.Point(8, 18);
             this.lbl_AccNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_AccNo.Name = "lbl_AccNo";
@@ -178,24 +180,36 @@
             this.lbl_AccNo.TabIndex = 2;
             this.lbl_AccNo.Text = "AccNo";
             // 
-            // lbl_PurchaseFrom
+            // lbl_BillNo
             // 
-            this.lbl_PurchaseFrom.AutoSize = true;
-            this.lbl_PurchaseFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_PurchaseFrom.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_PurchaseFrom.Location = new System.Drawing.Point(6, 10);
-            this.lbl_PurchaseFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_PurchaseFrom.Name = "lbl_PurchaseFrom";
-            this.lbl_PurchaseFrom.Size = new System.Drawing.Size(112, 16);
-            this.lbl_PurchaseFrom.TabIndex = 3;
-            this.lbl_PurchaseFrom.Text = "Purchase From";
+            this.lbl_BillNo.AutoSize = true;
+            this.lbl_BillNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_BillNo.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_BillNo.Location = new System.Drawing.Point(199, 18);
+            this.lbl_BillNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_BillNo.Name = "lbl_BillNo";
+            this.lbl_BillNo.Size = new System.Drawing.Size(94, 16);
+            this.lbl_BillNo.TabIndex = 6;
+            this.lbl_BillNo.Text = "Sale Bill No.";
+            // 
+            // lbl_CustomerName
+            // 
+            this.lbl_CustomerName.AutoSize = true;
+            this.lbl_CustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_CustomerName.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_CustomerName.Location = new System.Drawing.Point(9, 21);
+            this.lbl_CustomerName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_CustomerName.Name = "lbl_CustomerName";
+            this.lbl_CustomerName.Size = new System.Drawing.Size(118, 16);
+            this.lbl_CustomerName.TabIndex = 3;
+            this.lbl_CustomerName.Text = "Customer Name";
             // 
             // lbl_Add
             // 
             this.lbl_Add.AutoSize = true;
             this.lbl_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Add.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Add.Location = new System.Drawing.Point(6, 43);
+            this.lbl_Add.Location = new System.Drawing.Point(9, 54);
             this.lbl_Add.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Add.Name = "lbl_Add";
             this.lbl_Add.Size = new System.Drawing.Size(66, 16);
@@ -207,38 +221,24 @@
             this.lbl_ContactNo.AutoSize = true;
             this.lbl_ContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_ContactNo.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_ContactNo.Location = new System.Drawing.Point(6, 72);
+            this.lbl_ContactNo.Location = new System.Drawing.Point(9, 83);
             this.lbl_ContactNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_ContactNo.Name = "lbl_ContactNo";
             this.lbl_ContactNo.Size = new System.Drawing.Size(88, 16);
             this.lbl_ContactNo.TabIndex = 5;
             this.lbl_ContactNo.Text = "Contact No.";
             // 
-            // lbl_BillNo
-            // 
-            this.lbl_BillNo.AutoSize = true;
-            this.lbl_BillNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_BillNo.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_BillNo.Location = new System.Drawing.Point(6, 101);
-            this.lbl_BillNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_BillNo.Name = "lbl_BillNo";
-            this.lbl_BillNo.Size = new System.Drawing.Size(127, 16);
-            this.lbl_BillNo.TabIndex = 6;
-            this.lbl_BillNo.Text = "Purchase Bill No.";
-            // 
             // pnl_SupplierInfo
             // 
             this.pnl_SupplierInfo.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnl_SupplierInfo.Controls.Add(this.lbl_Balance);
             this.pnl_SupplierInfo.Controls.Add(this.txt_MobileNo);
-            this.pnl_SupplierInfo.Controls.Add(this.txt_BillNo);
             this.pnl_SupplierInfo.Controls.Add(this.txt_ContactNo);
             this.pnl_SupplierInfo.Controls.Add(this.txt_City);
             this.pnl_SupplierInfo.Controls.Add(this.lbl_City);
             this.pnl_SupplierInfo.Controls.Add(this.txt_Address);
             this.pnl_SupplierInfo.Controls.Add(this.cmb_Name);
-            this.pnl_SupplierInfo.Controls.Add(this.lbl_BillNo);
-            this.pnl_SupplierInfo.Controls.Add(this.lbl_PurchaseFrom);
+            this.pnl_SupplierInfo.Controls.Add(this.lbl_CustomerName);
             this.pnl_SupplierInfo.Controls.Add(this.lbl_ContactNo);
             this.pnl_SupplierInfo.Controls.Add(this.lbl_Add);
             this.pnl_SupplierInfo.Location = new System.Drawing.Point(4, 51);
@@ -250,12 +250,12 @@
             // lbl_Balance
             // 
             this.lbl_Balance.AutoSize = true;
-            this.lbl_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.lbl_Balance.ForeColor = System.Drawing.Color.Red;
-            this.lbl_Balance.Location = new System.Drawing.Point(334, 100);
+            this.lbl_Balance.Location = new System.Drawing.Point(9, 108);
             this.lbl_Balance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Balance.Name = "lbl_Balance";
-            this.lbl_Balance.Size = new System.Drawing.Size(74, 20);
+            this.lbl_Balance.Size = new System.Drawing.Size(66, 17);
             this.lbl_Balance.TabIndex = 15;
             this.lbl_Balance.Text = "Balance";
             this.lbl_Balance.Visible = false;
@@ -264,7 +264,7 @@
             // 
             this.txt_MobileNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_MobileNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_MobileNo.Location = new System.Drawing.Point(370, 71);
+            this.txt_MobileNo.Location = new System.Drawing.Point(370, 82);
             this.txt_MobileNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_MobileNo.Name = "txt_MobileNo";
             this.txt_MobileNo.Size = new System.Drawing.Size(132, 19);
@@ -272,23 +272,11 @@
             this.txt_MobileNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_MobileNo_KeyDown);
             this.txt_MobileNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_MobileNo_KeyPress);
             // 
-            // txt_BillNo
-            // 
-            this.txt_BillNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_BillNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_BillNo.Location = new System.Drawing.Point(168, 100);
-            this.txt_BillNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_BillNo.Name = "txt_BillNo";
-            this.txt_BillNo.Size = new System.Drawing.Size(164, 19);
-            this.txt_BillNo.TabIndex = 13;
-            this.txt_BillNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BillNo_KeyDown);
-            this.txt_BillNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BillNo_KeyPress);
-            // 
             // txt_ContactNo
             // 
             this.txt_ContactNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_ContactNo.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_ContactNo.Location = new System.Drawing.Point(168, 71);
+            this.txt_ContactNo.Location = new System.Drawing.Point(168, 82);
             this.txt_ContactNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_ContactNo.Name = "txt_ContactNo";
             this.txt_ContactNo.Size = new System.Drawing.Size(164, 19);
@@ -300,7 +288,7 @@
             // 
             this.txt_City.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_City.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_City.Location = new System.Drawing.Point(370, 42);
+            this.txt_City.Location = new System.Drawing.Point(370, 53);
             this.txt_City.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_City.Name = "txt_City";
             this.txt_City.Size = new System.Drawing.Size(132, 19);
@@ -313,7 +301,7 @@
             this.lbl_City.AutoSize = true;
             this.lbl_City.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_City.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_City.Location = new System.Drawing.Point(334, 43);
+            this.lbl_City.Location = new System.Drawing.Point(334, 54);
             this.lbl_City.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_City.Name = "lbl_City";
             this.lbl_City.Size = new System.Drawing.Size(34, 16);
@@ -324,7 +312,7 @@
             // 
             this.txt_Address.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Address.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Address.Location = new System.Drawing.Point(168, 42);
+            this.txt_Address.Location = new System.Drawing.Point(168, 53);
             this.txt_Address.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Address.Name = "txt_Address";
             this.txt_Address.Size = new System.Drawing.Size(164, 19);
@@ -337,7 +325,7 @@
             this.cmb_Name.BackColor = System.Drawing.SystemColors.Window;
             this.cmb_Name.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.cmb_Name.FormattingEnabled = true;
-            this.cmb_Name.Location = new System.Drawing.Point(168, 5);
+            this.cmb_Name.Location = new System.Drawing.Point(168, 16);
             this.cmb_Name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Name.Name = "cmb_Name";
             this.cmb_Name.Size = new System.Drawing.Size(332, 27);
@@ -514,6 +502,8 @@
             // 
             // cmb_SubCategory
             // 
+            this.cmb_SubCategory.AllowDrop = true;
+            this.cmb_SubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmb_SubCategory.FormattingEnabled = true;
             this.cmb_SubCategory.Location = new System.Drawing.Point(358, 40);
             this.cmb_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -525,6 +515,8 @@
             // 
             // cmb_Category
             // 
+            this.cmb_Category.AllowDrop = true;
+            this.cmb_Category.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmb_Category.FormattingEnabled = true;
             this.cmb_Category.Location = new System.Drawing.Point(116, 40);
             this.cmb_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -591,6 +583,48 @@
             this.dgv_ItemInfo.ReadOnly = true;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(652, 201);
             this.dgv_ItemInfo.TabIndex = 9;
+            // 
+            // BarcodeNo
+            // 
+            this.BarcodeNo.FillWeight = 110.8629F;
+            this.BarcodeNo.HeaderText = "Barcode No";
+            this.BarcodeNo.Name = "BarcodeNo";
+            this.BarcodeNo.ReadOnly = true;
+            // 
+            // Category
+            // 
+            this.Category.FillWeight = 110.8629F;
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // SubCategory
+            // 
+            this.SubCategory.FillWeight = 110.8629F;
+            this.SubCategory.HeaderText = "SubCategory";
+            this.SubCategory.Name = "SubCategory";
+            this.SubCategory.ReadOnly = true;
+            // 
+            // SellingAmt
+            // 
+            this.SellingAmt.FillWeight = 110.8629F;
+            this.SellingAmt.HeaderText = "SellingAmt";
+            this.SellingAmt.Name = "SellingAmt";
+            this.SellingAmt.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            this.Qty.FillWeight = 45.68528F;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            // 
+            // TotalAmt
+            // 
+            this.TotalAmt.FillWeight = 110.8629F;
+            this.TotalAmt.HeaderText = "TotalAmt";
+            this.TotalAmt.Name = "TotalAmt";
+            this.TotalAmt.ReadOnly = true;
             // 
             // pnl_PaymentOpt
             // 
@@ -742,36 +776,6 @@
             this.pnl_Bottom.Size = new System.Drawing.Size(992, 44);
             this.pnl_Bottom.TabIndex = 11;
             // 
-            // pnl_Picture
-            // 
-            this.pnl_Picture.BackColor = System.Drawing.SystemColors.Control;
-            this.pnl_Picture.Location = new System.Drawing.Point(528, 51);
-            this.pnl_Picture.Name = "pnl_Picture";
-            this.pnl_Picture.Size = new System.Drawing.Size(461, 284);
-            this.pnl_Picture.TabIndex = 12;
-            // 
-            // bttn_Sale
-            // 
-            this.bttn_Sale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.bttn_Sale.Location = new System.Drawing.Point(777, 9);
-            this.bttn_Sale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.bttn_Sale.Name = "bttn_Sale";
-            this.bttn_Sale.Size = new System.Drawing.Size(76, 28);
-            this.bttn_Sale.TabIndex = 4;
-            this.bttn_Sale.Text = "Sale";
-            this.bttn_Sale.UseVisualStyleBackColor = true;
-            // 
-            // bttn_Clear
-            // 
-            this.bttn_Clear.ForeColor = System.Drawing.Color.Blue;
-            this.bttn_Clear.Location = new System.Drawing.Point(659, 9);
-            this.bttn_Clear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.bttn_Clear.Name = "bttn_Clear";
-            this.bttn_Clear.Size = new System.Drawing.Size(76, 28);
-            this.bttn_Clear.TabIndex = 5;
-            this.bttn_Clear.Text = "Clear";
-            this.bttn_Clear.UseVisualStyleBackColor = true;
-            // 
             // bttn_Close
             // 
             this.bttn_Close.ForeColor = System.Drawing.Color.Red;
@@ -784,47 +788,47 @@
             this.bttn_Close.UseVisualStyleBackColor = true;
             this.bttn_Close.Click += new System.EventHandler(this.bttn_Close_Click);
             // 
-            // BarcodeNo
+            // bttn_Clear
             // 
-            this.BarcodeNo.FillWeight = 110.8629F;
-            this.BarcodeNo.HeaderText = "Barcode No";
-            this.BarcodeNo.Name = "BarcodeNo";
-            this.BarcodeNo.ReadOnly = true;
+            this.bttn_Clear.ForeColor = System.Drawing.Color.Blue;
+            this.bttn_Clear.Location = new System.Drawing.Point(659, 9);
+            this.bttn_Clear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.bttn_Clear.Name = "bttn_Clear";
+            this.bttn_Clear.Size = new System.Drawing.Size(76, 28);
+            this.bttn_Clear.TabIndex = 5;
+            this.bttn_Clear.Text = "Clear";
+            this.bttn_Clear.UseVisualStyleBackColor = true;
             // 
-            // Category
+            // bttn_Sale
             // 
-            this.Category.FillWeight = 110.8629F;
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
+            this.bttn_Sale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bttn_Sale.Location = new System.Drawing.Point(777, 9);
+            this.bttn_Sale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.bttn_Sale.Name = "bttn_Sale";
+            this.bttn_Sale.Size = new System.Drawing.Size(76, 28);
+            this.bttn_Sale.TabIndex = 4;
+            this.bttn_Sale.Text = "Sale";
+            this.bttn_Sale.UseVisualStyleBackColor = true;
+            this.bttn_Sale.Click += new System.EventHandler(this.bttn_Sale_Click);
             // 
-            // SubCategory
+            // panel
             // 
-            this.SubCategory.FillWeight = 110.8629F;
-            this.SubCategory.HeaderText = "SubCategory";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
+            this.panel.BackColor = System.Drawing.SystemColors.Control;
+            this.panel.Location = new System.Drawing.Point(528, 51);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(461, 284);
+            this.panel.TabIndex = 12;
             // 
-            // SellingAmt
+            // txt_BillNo
             // 
-            this.SellingAmt.FillWeight = 110.8629F;
-            this.SellingAmt.HeaderText = "SellingAmt";
-            this.SellingAmt.Name = "SellingAmt";
-            this.SellingAmt.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            this.Qty.FillWeight = 45.68528F;
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // TotalAmt
-            // 
-            this.TotalAmt.FillWeight = 110.8629F;
-            this.TotalAmt.HeaderText = "TotalAmt";
-            this.TotalAmt.Name = "TotalAmt";
-            this.TotalAmt.ReadOnly = true;
+            this.txt_BillNo.AutoSize = true;
+            this.txt_BillNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_BillNo.ForeColor = System.Drawing.Color.White;
+            this.txt_BillNo.Location = new System.Drawing.Point(297, 18);
+            this.txt_BillNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txt_BillNo.Name = "txt_BillNo";
+            this.txt_BillNo.Size = new System.Drawing.Size(0, 16);
+            this.txt_BillNo.TabIndex = 10;
             // 
             // frm_SaleForm
             // 
@@ -832,7 +836,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(992, 592);
-            this.Controls.Add(this.pnl_Picture);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.pnl_Bottom);
             this.Controls.Add(this.pnl_PaymentOpt);
             this.Controls.Add(this.dgv_ItemInfo);
@@ -847,6 +851,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Purchase Form";
             this.Load += new System.EventHandler(this.frm_PurchaseForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_SaleForm_KeyDown);
             this.pnl_Main.ResumeLayout(false);
             this.pnl_Top.ResumeLayout(false);
             this.pnl_Top.PerformLayout();
@@ -871,13 +876,12 @@
         private System.Windows.Forms.Label lbl_Date;
         private System.Windows.Forms.Label lbl_Purchase;
         private System.Windows.Forms.Label lbl_AccNo;
-        private System.Windows.Forms.Label lbl_PurchaseFrom;
+        private System.Windows.Forms.Label lbl_CustomerName;
         private System.Windows.Forms.Label lbl_Add;
         private System.Windows.Forms.Label lbl_ContactNo;
         private System.Windows.Forms.Label lbl_BillNo;
         private System.Windows.Forms.Panel pnl_SupplierInfo;
         private System.Windows.Forms.TextBox txt_MobileNo;
-        private System.Windows.Forms.TextBox txt_BillNo;
         private System.Windows.Forms.TextBox txt_ContactNo;
         private System.Windows.Forms.TextBox txt_City;
         private System.Windows.Forms.Label lbl_City;
@@ -913,7 +917,7 @@
         private System.Windows.Forms.TextBox txt_TotalAmt;
         private System.Windows.Forms.Label lbl_TotalAmt;
         private System.Windows.Forms.Panel pnl_Bottom;
-        private System.Windows.Forms.Panel pnl_Picture;
+        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Label lbl_PurchaseAmt;
         private System.Windows.Forms.TextBox txt_BarcodeNo;
         private System.Windows.Forms.Label txt_AccNo;
@@ -926,5 +930,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SellingAmt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmt;
+        private System.Windows.Forms.Label txt_BillNo;
     }
 }

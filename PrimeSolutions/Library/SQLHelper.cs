@@ -284,7 +284,7 @@ namespace PrimeSolutions.Library
 
                 case "C":
 
-                    SQL = "Select Max(Right(AccNo,4))+1 As MaxID From SalesBMaster Where Right(Left(AccNo,1),1)= 'C'";
+                    SQL = "Select Max(Right(CustId,4))+1 As MaxID From CustomerMaster Where Right(Left(CustId,1),1)= 'C'";
                     break;
               
 
@@ -394,7 +394,7 @@ namespace PrimeSolutions.Library
 
                 case "S":
 
-                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From SalesBBillMaster Where Right(Left(BillNo,1),1)= 'S'";
+                    SQL = "Select Max(Right(BillNo,4))+1 As MaxID From SaleBillMaster Where Right(Left(BillNo,1),1)= 'S'";
 
                     break;
 
