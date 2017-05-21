@@ -30,6 +30,7 @@
         {
             this.pnl_Main = new System.Windows.Forms.Panel();
             this.pnl_Top = new System.Windows.Forms.Panel();
+            this.txt_BillNo = new System.Windows.Forms.Label();
             this.txt_AccNo = new System.Windows.Forms.Label();
             this.dtp_Date = new System.Windows.Forms.DateTimePicker();
             this.lbl_Date = new System.Windows.Forms.Label();
@@ -88,7 +89,7 @@
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
-            this.txt_BillNo = new System.Windows.Forms.Label();
+            this.txt_TaxPer = new System.Windows.Forms.TextBox();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -125,6 +126,17 @@
             this.pnl_Top.Name = "pnl_Top";
             this.pnl_Top.Size = new System.Drawing.Size(992, 48);
             this.pnl_Top.TabIndex = 0;
+            // 
+            // txt_BillNo
+            // 
+            this.txt_BillNo.AutoSize = true;
+            this.txt_BillNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_BillNo.ForeColor = System.Drawing.Color.White;
+            this.txt_BillNo.Location = new System.Drawing.Point(297, 18);
+            this.txt_BillNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txt_BillNo.Name = "txt_BillNo";
+            this.txt_BillNo.Size = new System.Drawing.Size(0, 16);
+            this.txt_BillNo.TabIndex = 10;
             // 
             // txt_AccNo
             // 
@@ -496,7 +508,7 @@
             this.txt_BarcodeNo.Name = "txt_BarcodeNo";
             this.txt_BarcodeNo.Size = new System.Drawing.Size(136, 19);
             this.txt_BarcodeNo.TabIndex = 14;
-            this.txt_BarcodeNo.TextChanged += new System.EventHandler(this.txt_PurchaseAmt_TextChanged);
+            this.txt_BarcodeNo.TextChanged += new System.EventHandler(this.txt_BarcodeNo_TextChanged);
             this.txt_BarcodeNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_PurchaseAmt_KeyDown);
             this.txt_BarcodeNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_PurchaseAmt_KeyPress);
             // 
@@ -504,12 +516,14 @@
             // 
             this.cmb_SubCategory.AllowDrop = true;
             this.cmb_SubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmb_SubCategory.DisplayMember = "subcategory";
             this.cmb_SubCategory.FormattingEnabled = true;
             this.cmb_SubCategory.Location = new System.Drawing.Point(358, 40);
             this.cmb_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_SubCategory.Name = "cmb_SubCategory";
             this.cmb_SubCategory.Size = new System.Drawing.Size(136, 27);
             this.cmb_SubCategory.TabIndex = 7;
+            this.cmb_SubCategory.ValueMember = "SubCategory";
             this.cmb_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_SubCategory_KeyDown);
             this.cmb_SubCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_SubCategory_KeyPress);
             // 
@@ -517,12 +531,14 @@
             // 
             this.cmb_Category.AllowDrop = true;
             this.cmb_Category.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmb_Category.DisplayMember = "Category";
             this.cmb_Category.FormattingEnabled = true;
             this.cmb_Category.Location = new System.Drawing.Point(116, 40);
             this.cmb_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Category.Name = "cmb_Category";
             this.cmb_Category.Size = new System.Drawing.Size(136, 27);
             this.cmb_Category.TabIndex = 6;
+            this.cmb_Category.ValueMember = "Category";
             this.cmb_Category.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Category_KeyDown);
             this.cmb_Category.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_Category_KeyPress);
             // 
@@ -629,6 +645,7 @@
             // pnl_PaymentOpt
             // 
             this.pnl_PaymentOpt.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl_PaymentOpt.Controls.Add(this.txt_TaxPer);
             this.pnl_PaymentOpt.Controls.Add(this.txt_BalAmt);
             this.pnl_PaymentOpt.Controls.Add(this.lbl_BalanceAmt);
             this.pnl_PaymentOpt.Controls.Add(this.txt_PaidAmt);
@@ -819,16 +836,15 @@
             this.panel.Size = new System.Drawing.Size(461, 284);
             this.panel.TabIndex = 12;
             // 
-            // txt_BillNo
+            // txt_TaxPer
             // 
-            this.txt_BillNo.AutoSize = true;
-            this.txt_BillNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_BillNo.ForeColor = System.Drawing.Color.White;
-            this.txt_BillNo.Location = new System.Drawing.Point(297, 18);
-            this.txt_BillNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txt_BillNo.Name = "txt_BillNo";
-            this.txt_BillNo.Size = new System.Drawing.Size(0, 16);
-            this.txt_BillNo.TabIndex = 10;
+            this.txt_TaxPer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_TaxPer.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_TaxPer.Location = new System.Drawing.Point(105, 60);
+            this.txt_TaxPer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_TaxPer.Name = "txt_TaxPer";
+            this.txt_TaxPer.Size = new System.Drawing.Size(41, 19);
+            this.txt_TaxPer.TabIndex = 31;
             // 
             // frm_SaleForm
             // 
@@ -845,6 +861,7 @@
             this.Controls.Add(this.pnl_Main);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frm_SaleForm";
             this.ShowIcon = false;
@@ -931,5 +948,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmt;
         private System.Windows.Forms.Label txt_BillNo;
+        private System.Windows.Forms.TextBox txt_TaxPer;
     }
 }

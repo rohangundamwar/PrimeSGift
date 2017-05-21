@@ -1,4 +1,5 @@
-﻿using PrimeSolutions.Library;
+﻿using PrimeSolutions.ClassFile;
+using PrimeSolutions.Library;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,49 +14,90 @@ namespace PrimeSolutions
     {
         public frm_PurchaseForm()
         {
+           
             InitializeComponent();
         }
 
         Simplevalidations _objSimpal = new Simplevalidations();
         SQLHelper _objSQLHelper = new SQLHelper();
+        Validation _objValidation = new Validation();
+        AllClassFile _objCustmor = new AllClassFile();
+        Setting datasv;
 
         private void frm_PurchaseForm_Load(object sender, EventArgs e)
         {
+            fiicomboox();
             Masterclear();
             cmb_Name.Select();
             this.BringToFront();
-        //    txt_BillNo.Text = _objSQLHelper.gmGetMstID("P", "0");
+            
+            
+        
+        }
+
+        private void fiicomboox()
+        {
+            cmb_Name.DataSource = _objCustmor.getCustomerName();
+            cmb_Category.DataSource = _objCustmor.GetCategory();
+            cmb_SubCategory.DataSource = _objCustmor.GetSubCategory();
         }
 
         private void Masterclear()
         {
-            cmb_Name.ResetText();
-            cmb_Category.ResetText();
-            cmb_SubCategory.ResetText();
-            txt_AccNo.ResetText();
+            cmb_Name.SelectedIndex = -1;
+            cmb_Category.SelectedIndex = -1;
+            cmb_SubCategory.SelectedIndex = -1;
             txt_Address.ResetText();
-            txt_BalAmt.ResetText();
+            txt_BalAmt.Text = "0";
             txt_BillNo.ResetText();
             txt_City.ResetText();
             txt_ContactNo.ResetText();
             txt_MobileNo.ResetText();
-            txt_NetAmt.ResetText();
-            txt_PaidAmt.ResetText();
+            txt_NetAmt.Text = "0";
+            txt_PaidAmt.Text = "0";
             txt_Qty.Text = "0";
             txt_TotalAmt.ResetText();
             txt_Vat.ResetText();
             txt_SellingAmt.Text = "0";
             txt_PurchaseAmt.Text = "0";
-            
+            txt_Vat.Text = "0";
+            txt_TotalAmt.Text = "0";
+            dgv_ItemInfo.Rows.Clear();
+            try
+            {
+                txt_AccNo.Text = _objSQLHelper.gmGetMstID("P", "0");
+            }
+            catch(Exception ex)
+            {
+            }
+            chbk_barcode.Checked = true;
+
         }
 
         private void cmb_Name_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode ==  Keys.Enter)
             {
+                fillSupplier();
                 txt_Address.Focus();
             }
 
+        }
+
+        private void fillSupplier()
+        {
+            DataTable dt = _objCustmor.GetSupplier(cmb_Name.Text);
+            if (dt.Rows.Count > 0)
+            {
+                txt_AccNo.Text = dt.Rows[0]["AccNo"].ToString();
+                txt_Address.Text = dt.Rows[0]["address"].ToString();
+                txt_City.Text = dt.Rows[0]["city"].ToString();
+                txt_ContactNo.Text = dt.Rows[0]["contact_no"].ToString();
+                txt_MobileNo.Text = dt.Rows[0]["phone_no"].ToString();
+            }
+            else
+            { }
+           
         }
 
         private void txt_Address_KeyDown(object sender, KeyEventArgs e)
@@ -141,7 +183,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Vat.Focus();
+                txt_VatValue.Focus();
             }
         }
 
@@ -318,8 +360,9 @@ namespace PrimeSolutions
         {
             try
             {
+
                 
-                dgv_ItemInfo.Rows.Add(cmb_Category.Text, cmb_SubCategory.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_SellingAmt.Text, txt_Amt.Text);
+                dgv_ItemInfo.Rows.Add(cmb_Category.Text, cmb_SubCategory.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_SellingAmt.Text, txt_Amt.Text,txt_BillNo.Text);
                 Clear();
                 
             }
@@ -354,14 +397,178 @@ namespace PrimeSolutions
 
         private void Calculate()
         {
-            int total = 0;
+            double total = 0;
 
-            for (int i = 0; i < dgv_ItemInfo.Rows.Count - 1; i++)
+            for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
             {
-                total += Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["PayAmount"]);
+                total += Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
             }
 
             txt_TotalAmt.Text = total.ToString();
+            try
+            {
+                if (txt_VatValue.Text == "")
+                {
+                    txt_Vat.Text = "0";
+                   
+                }
+                else
+                {
+                    txt_Vat.Text = ((Convert.ToDouble(txt_TotalAmt.Text) * Convert.ToDouble(txt_VatValue.Text)) / 100).ToString();
+                }
+                txt_NetAmt.Text = (Convert.ToDouble(txt_TotalAmt.Text) + Convert.ToDouble(txt_Vat.Text)).ToString();
+                txt_BalAmt.Text = (Convert.ToDouble(txt_NetAmt.Text) - Convert.ToDouble(txt_PaidAmt.Text)).ToString();
+            }
+            catch (Exception ex)
+            { }
         }
+
+        private void txt_Vat_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_VatValue_TextChanged(object sender, EventArgs e)
+        {
+            Calculate();
+        }
+
+        private void txt_PaidAmt_TextChanged(object sender, EventArgs e)
+        {
+            Calculate();
+        }
+
+        private void txt_VatValue_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txt_Vat.Focus();
+            }
+        }
+
+        private void txt_BalAmt_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void bttn_Purchase_Click(object sender, EventArgs e)
+        {
+            int BarcodeCount = _objCustmor.getbarcode();
+            if (checkData())
+            {
+                if (!_objCustmor.SupplierDetail(cmb_Name.Text))
+                {
+                    _objCustmor.InsertCustomerInfo(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_City.Text, txt_ContactNo.Text, txt_MobileNo.Text, txt_BillNo.Text, dtp_Date.Text);
+                }
+                for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
+                {
+                    if (Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value) == 1)
+                    {
+                        string barcode = _objSQLHelper.gmGetMstID("B", "0");
+                        string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
+                        string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                        string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
+                        //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+                        string sellingamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
+                        string Total = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
+                        string PBillNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PBill"].Value);
+                        _objCustmor.InsertItem(barcode, txt_AccNo.Text, category, subcategory, purchaseamt, "1", sellingamt, Total, dtp_Date.Text, PBillNo);
+                        if (chbk_barcode.Checked == true)
+                        {
+                            _objCustmor.printBarcode(barcode, category, subcategory, purchaseamt, sellingamt, Total, i);
+
+                        }
+                    }
+                    else if (Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value) > 1)
+                    {
+                        if(BarcodeCount==1)
+                        { 
+                        int Qty = Convert.ToInt32(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value));
+                        for (int j = 0; j < Qty; j++)
+                        {
+                            string barcode = _objSQLHelper.gmGetMstID("B", "0");
+                            string category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
+                            string subcategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                            string purchaseamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
+                            //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+                            string sellingamt = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
+                            string Total = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
+                            string PBillNo = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PBill"].Value);
+                            _objCustmor.InsertItem(barcode, txt_AccNo.Text, category, subcategory, purchaseamt, "1", sellingamt, Total, dtp_Date.Text, PBillNo);
+                            if (chbk_barcode.Checked == true)
+                            {
+                                _objCustmor.printBarcode(barcode, category, subcategory, purchaseamt, sellingamt, Total, i);
+
+                            }
+                        }
+                        }
+                        else if (BarcodeCount == 2)
+                        {
+                            int Qty = Convert.ToInt32(Convert.ToInt32(dgv_ItemInfo.Rows[i].Cells["Qty"].Value));
+                            for (int j = 0; j < Qty; j++)
+                            {
+                                string barcode1 = _objSQLHelper.gmGetMstID("B", "0");
+                                string category1 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
+                                string subcategory1 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                                string purchaseamt1 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
+                                //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+                                string sellingamt1 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
+                                string Total1 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
+                                string PBillNo1 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PBill"].Value);
+                                _objCustmor.InsertItem(barcode1, txt_AccNo.Text, category1, subcategory1, purchaseamt1, "1", sellingamt1, Total1, dtp_Date.Text, PBillNo1);
+                                string barcode2 = _objSQLHelper.gmGetMstID("B", "0");
+                                string category2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
+                                string subcategory2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
+                                string purchaseamt2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PurchaseAmt"].Value);
+                                //string qty = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Qty"].Value);
+                                string sellingamt2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
+                                string Total2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["TotalAmt"].Value);
+                                string PBillNo2 = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["PBill"].Value);
+                                _objCustmor.InsertItem(barcode1, txt_AccNo.Text, category1, subcategory1, purchaseamt1, "1", sellingamt1, Total1, dtp_Date.Text, PBillNo1);
+                                if (chbk_barcode.Checked == true)
+                                {
+                                    _objCustmor.printBarcode(barcode1, barcode2,category1, category2, subcategory1, subcategory2,sellingamt1, sellingamt2);
+
+                                }
+                            }
+                        }
+                    }
+     
+                        _objCustmor.InsertBillDetail(txt_TotalAmt.Text, txt_VatValue.Text, txt_Vat.Text, txt_NetAmt.Text, txt_PaidAmt.Text, txt_BalAmt.Text, txt_AccNo.Text, dtp_Date.Text);
+                    
+                }
+                Masterclear();
+                MessageBox.Show("Purchased Done");
+                cmb_Name.Select();
+            }
+        }
+        private bool checkData()
+        {
+            if (_objValidation.IsNotEmpty(txt_AccNo.Text))
+            {
+                if (_objValidation.IsNotEmpty(cmb_Name.Text))
+                {
+                    if (dgv_ItemInfo.Rows.Count != 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter Item Into the Cart", "Software Says", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

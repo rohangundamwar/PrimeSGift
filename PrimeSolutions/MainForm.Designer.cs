@@ -31,11 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lbl_developer = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgv_stock = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.saleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,22 +58,22 @@
             this.duplicateBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prefrencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
-            this.stockCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dgv_stock = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_stock)).BeginInit();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_stock)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -105,33 +107,15 @@
             this.panel1.Size = new System.Drawing.Size(531, 351);
             this.panel1.TabIndex = 1;
             // 
-            // panel2
+            // label2
             // 
-            this.panel2.AutoSize = true;
-            this.panel2.Controls.Add(this.dgv_stock);
-            this.panel2.Location = new System.Drawing.Point(7, 6);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(528, 271);
-            this.panel2.TabIndex = 7;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.lbl_developer);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(257, 283);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(274, 62);
-            this.panel3.TabIndex = 6;
-            // 
-            // lbl_developer
-            // 
-            this.lbl_developer.AutoSize = true;
-            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
-            this.lbl_developer.Name = "lbl_developer";
-            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
-            this.lbl_developer.TabIndex = 6;
-            this.lbl_developer.Text = "Developed and \r\nMaintained by";
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(181, 299);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Maples Exclusive ";
             // 
             // panel4
             // 
@@ -152,10 +136,49 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "For";
             // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.dgv_stock);
+            this.panel2.Location = new System.Drawing.Point(7, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(528, 271);
+            this.panel2.TabIndex = 7;
+            // 
+            // dgv_stock
+            // 
+            this.dgv_stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_stock.Location = new System.Drawing.Point(7, 17);
+            this.dgv_stock.Name = "dgv_stock";
+            this.dgv_stock.ReadOnly = true;
+            this.dgv_stock.Size = new System.Drawing.Size(500, 150);
+            this.dgv_stock.TabIndex = 0;
+            this.dgv_stock.Visible = false;
+            this.dgv_stock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_stock_KeyDown);
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.lbl_developer);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Location = new System.Drawing.Point(257, 283);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(274, 62);
+            this.panel3.TabIndex = 6;
+            // 
+            // lbl_developer
+            // 
+            this.lbl_developer.AutoSize = true;
+            this.lbl_developer.Location = new System.Drawing.Point(3, 3);
+            this.lbl_developer.Name = "lbl_developer";
+            this.lbl_developer.Size = new System.Drawing.Size(83, 26);
+            this.lbl_developer.TabIndex = 6;
+            this.lbl_developer.Text = "Developed and \r\nMaintained by";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Image = global::PrimeSolutions.Properties.Resources.New_Doc_22;
+            this.pictureBox1.Image = global::PrimeSolutions.Properties.Resources.Canada_Leaf_PNG_Image;
             this.pictureBox1.Location = new System.Drawing.Point(29, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(132, 50);
@@ -202,7 +225,7 @@
             // 
             this.supplierToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.delivery_cart;
             this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
-            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(198, 24);
             this.supplierToolStripMenuItem.Text = "Supplier Purchase";
             this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
             // 
@@ -212,6 +235,7 @@
             this.barcodeEntryToolStripMenuItem.Name = "barcodeEntryToolStripMenuItem";
             this.barcodeEntryToolStripMenuItem.Size = new System.Drawing.Size(206, 30);
             this.barcodeEntryToolStripMenuItem.Text = "Barcode Entry";
+            this.barcodeEntryToolStripMenuItem.Click += new System.EventHandler(this.barcodeEntryToolStripMenuItem_Click);
             // 
             // accountingToolStripMenuItem
             // 
@@ -322,14 +346,38 @@
             this.purchaseToolStripMenuItem2.Size = new System.Drawing.Size(138, 24);
             this.purchaseToolStripMenuItem2.Text = "Purchase";
             // 
+            // stockCheckToolStripMenuItem
+            // 
+            this.stockCheckToolStripMenuItem.Name = "stockCheckToolStripMenuItem";
+            this.stockCheckToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
+            this.stockCheckToolStripMenuItem.Text = "Stock Check";
+            this.stockCheckToolStripMenuItem.Click += new System.EventHandler(this.stockCheckToolStripMenuItem_Click);
+            // 
             // masterToolStripMenuItem
             // 
+            this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.categoryToolStripMenuItem,
+            this.subCategoryToolStripMenuItem});
             this.masterToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.masterToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Applications;
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Padding = new System.Windows.Forms.Padding(8);
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(125, 44);
             this.masterToolStripMenuItem.Text = "Master";
+            // 
+            // categoryToolStripMenuItem
+            // 
+            this.categoryToolStripMenuItem.Name = "categoryToolStripMenuItem";
+            this.categoryToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.categoryToolStripMenuItem.Text = "Category";
+            this.categoryToolStripMenuItem.Click += new System.EventHandler(this.categoryToolStripMenuItem_Click);
+            // 
+            // subCategoryToolStripMenuItem
+            // 
+            this.subCategoryToolStripMenuItem.Name = "subCategoryToolStripMenuItem";
+            this.subCategoryToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.subCategoryToolStripMenuItem.Text = "Sub Category";
+            this.subCategoryToolStripMenuItem.Click += new System.EventHandler(this.subCategoryToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
@@ -365,34 +413,6 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(181, 299);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(203, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Unit of Shivmalhar Technologies Pvt. Ltd.";
-            // 
-            // stockCheckToolStripMenuItem
-            // 
-            this.stockCheckToolStripMenuItem.Name = "stockCheckToolStripMenuItem";
-            this.stockCheckToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
-            this.stockCheckToolStripMenuItem.Text = "Stock Check";
-            this.stockCheckToolStripMenuItem.Click += new System.EventHandler(this.stockCheckToolStripMenuItem_Click);
-            // 
-            // dgv_stock
-            // 
-            this.dgv_stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_stock.Location = new System.Drawing.Point(7, 17);
-            this.dgv_stock.Name = "dgv_stock";
-            this.dgv_stock.ReadOnly = true;
-            this.dgv_stock.Size = new System.Drawing.Size(500, 150);
-            this.dgv_stock.TabIndex = 0;
-            this.dgv_stock.Visible = false;
-            this.dgv_stock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_stock_KeyDown);
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -410,14 +430,14 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_stock)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_stock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,6 +480,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem stockCheckToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgv_stock;
+        private System.Windows.Forms.ToolStripMenuItem categoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem subCategoryToolStripMenuItem;
     }
 }
 

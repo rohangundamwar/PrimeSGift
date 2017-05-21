@@ -32,6 +32,8 @@ namespace PrimeSolutions
             txt_BillNo.Text = _objSQLHelper.gmGetMstID("S", "0");
             cmb_Category.DataSource = _common.GetCategory();
             cmb_SubCategory.DataSource = _common.GetSubCategory();
+            txt_TaxPer.Text =Convert.ToString(_common.GetTax()) + '%';
+
         }
 
         private void Masterclear()
@@ -131,6 +133,7 @@ namespace PrimeSolutions
             {
                 cmb_Category.Select();
             }
+            
         }
         
         private void bttn_Add_KeyDown(object sender, KeyEventArgs e)
@@ -299,19 +302,22 @@ namespace PrimeSolutions
         {
             try
             {
-                txt_Amt.Text = (Convert.ToDouble(txt_BarcodeNo.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
             }
             catch { }
         }
 
-        private void txt_PurchaseAmt_TextChanged(object sender, EventArgs e)
+        private void txt_BarcodeNo_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (txt_BarcodeNo.Text != "")
             {
-                txt_Amt.Text = (Convert.ToDouble(txt_BarcodeNo.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                DataTable dt = _Sale.GetItemDetails(txt_BarcodeNo.Text);
+                cmb_Category.Text = dt.Rows[0]["category"].ToString();
+                cmb_SubCategory.Text = dt.Rows[0]["sub_category"].ToString();
+                txt_SellingAmt.Text = dt.Rows[0]["sale_amt"].ToString();
+                txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                bttn_Add_Click(sender,e);
             }
-            catch (Exception ex)
-            { }
         }
 
         private void bttn_Add_Click(object sender, EventArgs e)
@@ -352,10 +358,13 @@ namespace PrimeSolutions
         {
             DateTime date = DateTime.Now;
              MessageBox.Show("Do you Want to Continue With Bill Amount of", txt_NetAmt.Text.ToString());
-            if (!_Cust.checkCustomerAccount(cmb_Name.Text))
+            if (cmb_Name.Text != "" || txt_ContactNo.Text != "")
             {
-                _objSQLHelper.gmGetMstID("C","0");
-                _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_MobileNo.Text, txt_ContactNo.Text);
+                if (!_Cust.checkCustomerAccount(cmb_Name.Text))
+                {
+                    _objSQLHelper.gmGetMstID("C", "0");
+                    _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_MobileNo.Text, txt_ContactNo.Text);
+                }
             }
             try
             {
@@ -397,6 +406,10 @@ namespace PrimeSolutions
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+            if (e.KeyCode == Keys.Add)
+            {
+                txt_TotalAmt.Focus();
             }
         }
     }

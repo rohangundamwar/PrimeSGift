@@ -12,7 +12,7 @@ namespace PrimeSolutions.Library
         SQLHelper _sql = new SQLHelper();
         public DataTable GetStock()
         {
-        string str = "Select category,sub_category,purchase_amt,sale_amt from BillItem Where Status= 'Purchase'";
+        string str = "Select category,sub_category,purchase_amt,sale_amt from BillItem Where type= 'Purchase'";
             DataTable d1 =  _sql.GetDataTable(str);
             return d1;
         }
