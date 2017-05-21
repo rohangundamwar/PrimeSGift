@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using PrimeSolutions.Common;
 
 namespace PrimeSolutions
 {
@@ -75,6 +76,45 @@ namespace PrimeSolutions
             {
                 dgv_stock.Visible = false;
             }
+        }
+
+        private void categoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Category _form = new frm_Category();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
+        }
+
+        private void subCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SubCategory _form = new frm_SubCategory();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
+        }
+
+        private void barcodeEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_BarcodePrint _form = new frm_BarcodePrint();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
         }
     }
 }

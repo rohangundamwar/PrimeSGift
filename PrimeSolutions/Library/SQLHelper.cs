@@ -279,7 +279,7 @@ namespace PrimeSolutions.Library
 
                 case "B":
 
-                    SQL = "Select Max(Right(BarcodeId,4))+1 As MaxID From tblImitationItemMaster Where Right(Left(BarcodeId,1),1)= 'B'";
+                    SQL = "Select Max(Right(Barcode,4))+1 As MaxID From BillItem Where Right(Left(Barcode,1),1)= 'B'";
                     break;
 
                 case "C":

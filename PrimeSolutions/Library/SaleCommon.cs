@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Data;
 
 namespace PrimeSolutions.Library
 {
@@ -16,7 +18,7 @@ namespace PrimeSolutions.Library
 
         public void UpdateItem(string ItemId, string SaleBill)
         {
-            string str = "Update BillItem Set status= 'Sale',SaleBillNo='"+SaleBill+"' Where ItemID='" + ItemId + "'";
+            string str = "Update BillItem Set type= 'Sale',SaleBillNo='"+SaleBill+ "' Where Barcode='" + ItemId + "'";
             _sql.ExecuteSql(str);
         }
 
@@ -26,5 +28,11 @@ namespace PrimeSolutions.Library
             _sql.ExecuteSql(str);
         }
 
-    }
+        public DataTable GetItemDetails(string Barcode)
+        {
+            string str = "Select * from BillItem where Barcode = '"+Barcode+"'" ;
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }             
+     }
 }

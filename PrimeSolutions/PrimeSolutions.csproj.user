@@ -3,5 +3,12 @@
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>
     <ProjectView>ShowAllFiles</ProjectView>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
 </Project>

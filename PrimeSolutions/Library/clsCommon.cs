@@ -16,14 +16,14 @@ namespace PrimeSolutions.Library
 
         public DataTable GetCategory()
         {
-            string str = "SELECT  CategoryName FROM  CategoryMaster";
+            string str = "SELECT  Category FROM  CategoryMaster";
             DataTable dt = _objSqlhelper.GetDataTable(str);
             return dt;
         }
 
         public DataTable GetSubCategory()
         {
-            string str = "SELECT SubCategoryName from SubCategoryMaster ";
+            string str = "SELECT SubCategory from SubCategoryMaster ";
             DataTable dt1 = _objSqlhelper.GetDataTable(str);
             return dt1;
         }
@@ -40,6 +40,13 @@ namespace PrimeSolutions.Library
             DataTable dt = _objSqlhelper.GetDataTable(str);
             return dt;
         }
+
+        public double GetTax()
+        {
+            string str = " Select TaxPer from setting";
+            double tax = Convert.ToDouble(_objSqlhelper.ExecuteScalar(str));
+            return tax; 
+        } 
 
         public void updateDatafield()
         {
