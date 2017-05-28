@@ -42,9 +42,9 @@ namespace PrimeSolutions.ClassFile
             return dt;
         }
 
-        internal void InsertItem(string barcode,string accno, string category, string subcategory, string purchaseamt, string qty, string sellingamt, string total, string date,string Pbill)
+        internal void InsertItem(string barcode,string accno, string category, string subcategory, string purchaseamt,string size, string qty, string sellingamt, string total, string date,string Pbill)
         {
-            string str = "INSERT INTO BillItem (Barcode,AccNo, category, sub_category, purchase_amt, sale_amt, qty, Total, type, SoftDate,PurchaseBill) VALUES ('" + barcode +"','"+accno+ "','" + category + "','" + subcategory + "','" + purchaseamt + "','" + sellingamt + "','" + qty + "','" + total + "','Purchase','" + date + "','"+Pbill+"')";
+            string str = "INSERT INTO BillItem (Barcode,AccNo, category, sub_category, purchase_amt,sale_amt,size, qty, Total, type, SoftDate,PurchaseBill) VALUES ('" + barcode +"','"+accno+ "','" + category + "','" + subcategory + "','" + purchaseamt + "','" + sellingamt + "','"+size+"','" + qty + "','" + total + "','Purchase','" + date + "','"+Pbill+"')";
             _objsqlhelper.ExecuteScalar(str);
         }
 
@@ -94,7 +94,7 @@ namespace PrimeSolutions.ClassFile
             _objsqlhelper.ExecuteScalar(str);
         }
 
-        public void printBarcode(string barcode, string category, string subcategory, string purchaseamt, string sellingamt, string total, int i)
+        public void printBarcode(string barcode, string category, string subcategory, string purchaseamt, string sellingamt,string size, string total, int i)
         {
             btApp = new BarTender.ApplicationClass();
             btFormat = btApp.Formats.Open(Environment.CurrentDirectory + "\\Barcode.btw", false, "");
@@ -107,6 +107,12 @@ namespace PrimeSolutions.ClassFile
             try
             {
                 btFormat.SetNamedSubStringValue("category", category);
+
+            }
+            catch { }
+            try
+            {
+                btFormat.SetNamedSubStringValue("size", size);
 
             }
             catch { }
@@ -127,40 +133,48 @@ namespace PrimeSolutions.ClassFile
             btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
         }
 
-        public void printBarcode(string barcode1,string  barcode2, string category1, string category2, string subcategory1, string subcategory2,string sellingamt1,string sellingamt2)
+        public void printBarcode(string barcode1,string  barcode2, string category1, string category2, string subcategory1, string subcategory2,string sellingamt1,string sellingamt2,string size1,string size2,int i)
         {
             btApp = new BarTender.ApplicationClass();
             btFormat = btApp.Formats.Open(System.Windows.Forms.Application.StartupPath + "\\Barcode2.btw", false, "");
             try
             {
-                btFormat.SetNamedSubStringValue("barcode", barcode1);
-                btFormat.SetNamedSubStringValue("barcode", barcode2);
+                btFormat.SetNamedSubStringValue("barcode1", barcode1);
+                btFormat.SetNamedSubStringValue("barcode2", barcode2);
 
             }
             catch { }
             try
             {
-                btFormat.SetNamedSubStringValue("category", category1);
-                btFormat.SetNamedSubStringValue("category", category2);
+                btFormat.SetNamedSubStringValue("category1", category1);
+                btFormat.SetNamedSubStringValue("category2", category2);
 
             }
             catch { }
             try
             {
-                btFormat.SetNamedSubStringValue("subcategory", subcategory1);
-                btFormat.SetNamedSubStringValue("subcategory", subcategory2);
+                btFormat.SetNamedSubStringValue("subcategory1", subcategory1);
+                btFormat.SetNamedSubStringValue("subcategory2", subcategory2);
 
             }
             catch { }
             
             try
             {
-                btFormat.SetNamedSubStringValue("sellingamt", sellingamt1);
-                btFormat.SetNamedSubStringValue("sellingamt", sellingamt2);
+                btFormat.SetNamedSubStringValue("sellingamt1", sellingamt1);
+                btFormat.SetNamedSubStringValue("sellingamt2", sellingamt2);
 
             }
             catch { }
-           
+            try
+            {
+                btFormat.SetNamedSubStringValue("size1", size1);
+                btFormat.SetNamedSubStringValue("size2", size2);
+
+            }
+            catch { }
+            btFormat.Print("Job" + (i + 1), false, -1, out btMsgs);
+
         }
 
         public DataTable GetSupplier( string name)

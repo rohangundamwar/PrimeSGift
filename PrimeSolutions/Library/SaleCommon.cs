@@ -4,35 +4,178 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Data;
+using System.Windows.Forms;
+using System.Drawing.Printing;
+using System.Drawing;
 
 namespace PrimeSolutions.Library
 {
     public class SaleCommon
     {
         SQLHelper _sql = new SQLHelper();
-        public void AddBillDetails(string BillNo,string CustomerId,string BillAmt,string VAT,string TotalAmt,string Discount,DateTime date)
+        string BillNo;
+        public void AddBillDetails(string BillNo, string CustomerId, string BillAmt, string VAT, string TotalAmt, string Discount, string date)
         {
-            string str = "Insert into SaleBillMaster(BillNo,CustomerId,BillAmount,VAT,TotalAmount,Discount,date)Values('"+BillNo+"','"+CustomerId+"','"+BillAmt+"','"+VAT+"','"+TotalAmt+"','"+Discount+"','"+date+"')";
+            string str = "Insert into SaleBillMaster(BillNo,CustomerId,BillAmount,VAT,TotalAmount,Discount,date)Values('" + BillNo + "','" + CustomerId + "','" + BillAmt + "','" + VAT + "','" + TotalAmt + "','" + Discount + "','" + date + "')";
             _sql.ExecuteSql(str);
         }
 
         public void UpdateItem(string ItemId, string SaleBill)
         {
-            string str = "Update BillItem Set type= 'Sale',SaleBillNo='"+SaleBill+ "' Where Barcode='" + ItemId + "'";
+            string str = "Update BillItem Set type= 'Sale',SaleBillNo='" + SaleBill + "' Where Barcode='" + ItemId + "'";
             _sql.ExecuteSql(str);
         }
 
-        public void AddItemDetails(string Category, string SubCategory, string Amount,string narration,string BillNo,string AccNo,DateTime date,string Sale)
+        public void AddItemDetails(string Category, string SubCategory, string Amount, string size, string narration, string BillNo, string AccNo, string date, string Sale)
         {
-            string str = "Insert into BillItem(category,sub_category,sale_amt,narration,SaleBillNo,AccNo,date,status) Values('" + Category + "','" + SubCategory + "','" + Amount + "','" + narration + "','" + BillNo + "','" + AccNo + "','" + date + "','"+Sale+"') ";
+            string str = "Insert into BillItem(category,sub_category,sale_amt,size,narration,SaleBillNo,AccNo,SoftDate,type) Values('" + Category + "','" + SubCategory + "','" + Amount + "','" + size + "','" + narration + "','" + BillNo + "','" + AccNo + "','" + date + "','" + Sale + "') ";
             _sql.ExecuteSql(str);
         }
 
         public DataTable GetItemDetails(string Barcode)
         {
-            string str = "Select * from BillItem where Barcode = '"+Barcode+"'" ;
+            string str = "Select * from BillItem where Barcode = '" + Barcode + "'";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
-        }             
-     }
+        }
+
+        private DataTable GetBillDetails(string BillNo)
+        {
+            string str = "Select * from SaleBillMaster where BillNo = '" + BillNo + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        private DataTable GetBillItem(string BillNo)
+        {
+            string str = "Select * from BillItem where SaleBillNo = '" + BillNo + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetCompanydetails()
+        {
+            string str = "select * from companymaster";
+            DataTable company = _sql.GetDataTable(str);
+            return company;
+        }
+
+        public DataTable GetCustomerByBill(string BillNo)
+        {
+            string str1 = "select CustomerId from SaleBillMaster where BillNo = '" + BillNo + "'";
+            string CustId = _sql.ExecuteScalar(str1);
+            string str2 = "select * from CustomerMaster where CustId = '" + CustId + "'";
+            DataTable dt = _sql.GetDataTable(str2);
+            return dt;
+
+        }
+
+        public void PrintBill(string BillNO)
+        {
+            BillNo = BillNO;
+            var doc = new PrintDocument();
+            doc.PrintPage += new PrintPageEventHandler(ProvideContent);
+            doc.Print();
+        }
+
+        public void ProvideContent(object sender, PrintPageEventArgs e)
+        {
+            string Billx = this.BillNo;
+            int j;
+            string CustName="" ;
+            string CustCont="";
+            DataTable BillDetail = GetBillDetails(Billx);
+            DataTable BillItem = GetBillItem(Billx);
+            DataTable company = GetCompanydetails();
+            DataTable Customer = GetCustomerByBill(Billx);
+            
+            Graphics graphics = e.Graphics;
+            Font font = new Font("Courier New", 10);
+            float fontHeight = font.GetHeight();
+            int startX = 0;
+            int startY = 0;
+            int Offset = 20;
+            
+            //e.PageSettings.PaperSize.Width = 50;
+
+            //Company Details//Header
+            graphics.DrawString("Welcome to \n" + company.Rows[0]["Name"].ToString(), new Font("Lucida Handwriting", 10),
+                                new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 40;
+            string underLine = "------------------------------------------";
+            graphics.DrawString(underLine, new Font("Courier New", 8),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            //Customer&BillDetails
+            graphics.DrawString("BillNo: " + BillDetail.Rows[0]["BillNo"].ToString(),
+            new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            if (Customer.Rows.Count == 1)
+            {
+                graphics.DrawString("  " + CustName,
+            new Font("Courier New", 8),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("  " + CustCont,
+                new Font("Courier New", 8),
+                            new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 20;
+            }
+           
+            underLine = "------------------------------------------";
+            graphics.DrawString(underLine, new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            //BillItem
+            for (int i=0;i<BillItem.Rows.Count;i++)
+            {
+                j = i + 1;
+            graphics.DrawString( j+ ")" + BillItem.Rows[i]["category"].ToString()+"  " + BillItem.Rows[0]["sub_category"].ToString(),
+            new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+                graphics.DrawString("₹  " + BillItem.Rows[i]["sale_amt"].ToString(),
+            new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 20;
+                underLine = "----------";
+                graphics.DrawString(underLine, new Font("Courier New", 8),
+                            new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 20;
+            }
+            underLine = "------------------------------------------";
+            graphics.DrawString(underLine, new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            //BillPayDetails
+            graphics.DrawString("Bill Amount: ₹ " + BillDetail.Rows[0]["BillAmount"].ToString(), new Font("Courier New", 8),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("VAT@6 %: ₹ " + BillDetail.Rows[0]["VAT"].ToString(), new Font("Courier New", 8),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("Total Amount: ₹ " + BillDetail.Rows[0]["TotalAmount"].ToString(), new Font("Courier New", 8),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            underLine = "------------------------------------------";
+            graphics.DrawString(underLine, new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("VAT No: " + company.Rows[0]["VATNo"].ToString()+"V", new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("CST TIN No: " + company.Rows[0]["VATNo"].ToString()+"C", new Font("Courier New", 10),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+
+            //Footer
+            graphics.DrawString("Thank You \n Visit Again !", new Font("Courier New", 8),
+                        new SolidBrush(Color.Black), startX, startY + Offset);
+
+        }
+
+        
+    }
 }
+

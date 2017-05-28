@@ -17,6 +17,7 @@ namespace PrimeSolutions.Common
             InitializeComponent();
         }
         AllClassFile _objCustmor = new AllClassFile();
+        PrimeSolutions.Library.ErrorLog _error = new Library.ErrorLog();
         private void frm_Category_Load(object sender, EventArgs e)
         {
             txt_SubCategory.Select();
@@ -69,9 +70,9 @@ namespace PrimeSolutions.Common
                     txt_SubCategory.Text = dgv_SubCategory.Rows[dgv_SubCategory.CurrentRow.Index].Cells["SubCategory"].Value.ToString();
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-               
+                _error.AddException(ex,"SubCategory");
             }
         }
 
@@ -85,6 +86,7 @@ namespace PrimeSolutions.Common
                 txt_SubCategory.ResetText();
                 lbl_SrNo.ResetText();
                 MessageBox.Show("Update SuccessFully");
+                bttn_Add.Enabled = true;
             }
         }
 
