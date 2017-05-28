@@ -116,5 +116,7 @@ namespace PrimeSolutions
             _form.Dock = DockStyle.Fill;
             _form.Show();
         }
+
+        
     }
 }

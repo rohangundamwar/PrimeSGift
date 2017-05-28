@@ -47,7 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>T Shirt.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\T Shirt.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -85,6 +85,21 @@
     </Compile>
     <Compile Include="Common\frm_SubCategory.designer.cs">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\BillItem1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillItem.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\Customer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Customer.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\Payment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Payment.xsd</DependentUpon>
     </Compile>
     <Compile Include="Library\AllClassFile.cs" />
     <Compile Include="Library\clsCommon.cs" />
@@ -143,6 +158,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Stock.rdlc" />
     <EmbeddedResource Include="Sale\frm_SaleForm.resx">
       <DependentUpon>frm_SaleForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +171,39 @@
     <None Include="bin\Debug\PrimeSolutions.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.config" />
     <None Include="bin\Debug\PrimeSolutions.vshost.exe.manifest" />
+    <None Include="Dataset\BillItem.xsc">
+      <DependentUpon>BillItem.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\BillItem.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BillItem1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\BillItem.xss">
+      <DependentUpon>BillItem.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Customer.xsc">
+      <DependentUpon>Customer.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Customer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Customer.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\Customer.xss">
+      <DependentUpon>Customer.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Payment.xsc">
+      <DependentUpon>Payment.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\Payment.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Payment.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\Payment.xss">
+      <DependentUpon>Payment.xsd</DependentUpon>
+    </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\PrimeSolutions.csproj.GenerateResource.Cache" />
@@ -174,10 +223,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dataset\" />
-    <Folder Include="Report\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
@@ -190,7 +236,7 @@
     <Content Include="obj\Debug\PrimeSolutions.exe" />
     <Content Include="obj\Debug\PrimeSolutions.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
-    <Content Include="T Shirt.ico" />
+    <Content Include="Resources\T Shirt.ico" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\Applications.png" />
     <None Include="Resources\Add.png" />

@@ -74,6 +74,7 @@
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
+            this.txt_TaxPer = new System.Windows.Forms.TextBox();
             this.txt_BalAmt = new System.Windows.Forms.TextBox();
             this.lbl_BalanceAmt = new System.Windows.Forms.Label();
             this.txt_PaidAmt = new System.Windows.Forms.TextBox();
@@ -89,7 +90,9 @@
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
-            this.txt_TaxPer = new System.Windows.Forms.TextBox();
+            this.txt_Size = new System.Windows.Forms.TextBox();
+            this.lbl_size = new System.Windows.Forms.Label();
+            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -348,6 +351,8 @@
             // pnl_ItemInfo
             // 
             this.pnl_ItemInfo.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl_ItemInfo.Controls.Add(this.txt_Size);
+            this.pnl_ItemInfo.Controls.Add(this.lbl_size);
             this.pnl_ItemInfo.Controls.Add(this.pnl_Button);
             this.pnl_ItemInfo.Controls.Add(this.txt_Amt);
             this.pnl_ItemInfo.Controls.Add(this.lbl_Amount);
@@ -454,11 +459,12 @@
             // 
             this.txt_Qty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Qty.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Qty.Location = new System.Drawing.Point(358, 11);
+            this.txt_Qty.Location = new System.Drawing.Point(327, 11);
             this.txt_Qty.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Qty.Name = "txt_Qty";
-            this.txt_Qty.Size = new System.Drawing.Size(73, 19);
+            this.txt_Qty.Size = new System.Drawing.Size(44, 19);
             this.txt_Qty.TabIndex = 18;
+            this.txt_Qty.Text = "1";
             this.txt_Qty.TextChanged += new System.EventHandler(this.txt_Qty_TextChanged);
             this.txt_Qty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Qty_KeyDown);
             this.txt_Qty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_Qty_KeyPress);
@@ -593,12 +599,14 @@
             this.SubCategory,
             this.SellingAmt,
             this.Qty,
-            this.TotalAmt});
+            this.TotalAmt,
+            this.size});
             this.dgv_ItemInfo.Location = new System.Drawing.Point(4, 341);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(652, 201);
             this.dgv_ItemInfo.TabIndex = 9;
+            this.dgv_ItemInfo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellContentClick);
             // 
             // BarcodeNo
             // 
@@ -660,6 +668,16 @@
             this.pnl_PaymentOpt.Name = "pnl_PaymentOpt";
             this.pnl_PaymentOpt.Size = new System.Drawing.Size(328, 201);
             this.pnl_PaymentOpt.TabIndex = 10;
+            // 
+            // txt_TaxPer
+            // 
+            this.txt_TaxPer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_TaxPer.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_TaxPer.Location = new System.Drawing.Point(105, 60);
+            this.txt_TaxPer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_TaxPer.Name = "txt_TaxPer";
+            this.txt_TaxPer.Size = new System.Drawing.Size(41, 19);
+            this.txt_TaxPer.TabIndex = 31;
             // 
             // txt_BalAmt
             // 
@@ -836,15 +854,33 @@
             this.panel.Size = new System.Drawing.Size(461, 284);
             this.panel.TabIndex = 12;
             // 
-            // txt_TaxPer
+            // txt_Size
             // 
-            this.txt_TaxPer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_TaxPer.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_TaxPer.Location = new System.Drawing.Point(105, 60);
-            this.txt_TaxPer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_TaxPer.Name = "txt_TaxPer";
-            this.txt_TaxPer.Size = new System.Drawing.Size(41, 19);
-            this.txt_TaxPer.TabIndex = 31;
+            this.txt_Size.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_Size.Location = new System.Drawing.Point(433, 11);
+            this.txt_Size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_Size.Name = "txt_Size";
+            this.txt_Size.Size = new System.Drawing.Size(57, 19);
+            this.txt_Size.TabIndex = 25;
+            // 
+            // lbl_size
+            // 
+            this.lbl_size.AutoSize = true;
+            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_size.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_size.Location = new System.Drawing.Point(380, 12);
+            this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_size.Name = "lbl_size";
+            this.lbl_size.Size = new System.Drawing.Size(38, 16);
+            this.lbl_size.TabIndex = 24;
+            this.lbl_size.Text = "Size";
+            // 
+            // size
+            // 
+            this.size.HeaderText = "size";
+            this.size.Name = "size";
+            this.size.ReadOnly = true;
             // 
             // frm_SaleForm
             // 
@@ -949,5 +985,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmt;
         private System.Windows.Forms.Label txt_BillNo;
         private System.Windows.Forms.TextBox txt_TaxPer;
+        private System.Windows.Forms.TextBox txt_Size;
+        private System.Windows.Forms.Label lbl_size;
+        private System.Windows.Forms.DataGridViewTextBoxColumn size;
     }
 }

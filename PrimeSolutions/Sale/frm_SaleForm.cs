@@ -29,15 +29,15 @@ namespace PrimeSolutions
             cmb_Name.Select();
             this.BringToFront();
             Clear();
-            txt_BillNo.Text = _objSQLHelper.gmGetMstID("S", "0");
             cmb_Category.DataSource = _common.GetCategory();
             cmb_SubCategory.DataSource = _common.GetSubCategory();
-            txt_TaxPer.Text =Convert.ToString(_common.GetTax()) + '%';
+            txt_TaxPer.Text =Convert.ToString(_common.GetTax());
 
         }
 
         private void Masterclear()
         {
+            txt_BillNo.Text = _objSQLHelper.gmGetMstID("S", "0");
             cmb_Name.ResetText();
             cmb_Category.SelectedIndex=-1;
             cmb_SubCategory.SelectedIndex = -1;
@@ -52,10 +52,12 @@ namespace PrimeSolutions
             txt_NetAmt.ResetText();
             txt_PaidAmt.ResetText();
             txt_Qty.Text = "1";
+            txt_Size.ResetText();
             txt_TotalAmt.Text = "0";
             txt_Vat.ResetText();
             txt_SellingAmt.Text = "0";
             txt_BarcodeNo.ResetText();
+            dgv_ItemInfo.Rows.Clear();
             
         }
         
@@ -131,7 +133,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                cmb_Category.Select();
+                bttn_Add_Click(sender, e);
             }
             
         }
@@ -190,11 +192,23 @@ namespace PrimeSolutions
         }
 
         private void txt_PurchaseAmt_KeyDown(object sender, KeyEventArgs e)
+       
         {
-            if (e.KeyCode == Keys.Enter)
+            
+            try
             {
-                txt_Qty.Focus();
+                if (txt_BarcodeNo.Text != "")
+                {
+                    DataTable dt = _Sale.GetItemDetails(txt_BarcodeNo.Text);
+                    cmb_Category.Text = dt.Rows[0]["category"].ToString();
+                    cmb_SubCategory.Text = dt.Rows[0]["sub_category"].ToString();
+                    txt_SellingAmt.Text = dt.Rows[0]["sale_amt"].ToString();
+                    txt_Size.Text = dt.Rows[0]["size"].ToString();
+                    txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                    bttn_Add_Click(sender, e);
+                }
             }
+            catch { }
         }
 
         private void txt_SellingAmt_KeyDown(object sender, KeyEventArgs e)
@@ -255,7 +269,7 @@ namespace PrimeSolutions
 
         private void txt_PurchaseAmt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _objSimpal.ValidationDigitWithPoint(e, txt_BarcodeNo.Text);
+            _objSimpal.ValidationCharDigitOnly(e);
         }
 
         private void txt_SellingAmt_KeyPress(object sender, KeyPressEventArgs e)
@@ -309,15 +323,16 @@ namespace PrimeSolutions
 
         private void txt_BarcodeNo_TextChanged(object sender, EventArgs e)
         {
-            if (txt_BarcodeNo.Text != "")
-            {
-                DataTable dt = _Sale.GetItemDetails(txt_BarcodeNo.Text);
-                cmb_Category.Text = dt.Rows[0]["category"].ToString();
-                cmb_SubCategory.Text = dt.Rows[0]["sub_category"].ToString();
-                txt_SellingAmt.Text = dt.Rows[0]["sale_amt"].ToString();
-                txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
-                bttn_Add_Click(sender,e);
-            }
+            //if (txt_BarcodeNo.Text != "")
+            //{
+            //    DataTable dt = _Sale.GetItemDetails(txt_BarcodeNo.Text);
+            //    cmb_Category.Text = dt.Rows[0]["category"].ToString();
+            //    cmb_SubCategory.Text = dt.Rows[0]["sub_category"].ToString();
+            //    txt_SellingAmt.Text = dt.Rows[0]["sale_amt"].ToString();
+            //    txt_Size.Text = dt.Rows[0]["size"].ToString();
+            //    txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+            //    bttn_Add_Click(sender, e);
+            //}
         }
 
         private void bttn_Add_Click(object sender, EventArgs e)
@@ -325,8 +340,9 @@ namespace PrimeSolutions
             try
             {
                 
-                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text,cmb_Category.Text, cmb_SubCategory.Text, txt_SellingAmt.Text, txt_Qty.Text, txt_Amt.Text);
+                dgv_ItemInfo.Rows.Add(txt_BarcodeNo.Text,cmb_Category.Text, cmb_SubCategory.Text, txt_SellingAmt.Text, txt_Qty.Text, txt_Amt.Text,txt_Size.Text);
                 Clear();
+                
                 
             }
             catch(Exception ex)
@@ -334,7 +350,9 @@ namespace PrimeSolutions
                 MessageBox.Show(ex.Message);
             }
             Calculate();
-            
+            txt_Vat.Text = calculateVAT().ToString();
+            txt_NetAmt.Text = Convert.ToString(Convert.ToInt32(txt_Vat.Text) + Convert.ToInt32(txt_TotalAmt.Text));
+
         }
 
         private void Clear()
@@ -344,7 +362,8 @@ namespace PrimeSolutions
             txt_Qty.Text = "1";
             txt_SellingAmt.Text = "0";
             txt_BarcodeNo.ResetText();
-            txt_Amt.Text = "0";  
+            txt_Amt.Text = "0";
+            txt_Size.Text = " ";
         }
 
         private void Calculate()
@@ -356,8 +375,8 @@ namespace PrimeSolutions
 
         private void bttn_Sale_Click(object sender, EventArgs e)
         {
-            DateTime date = DateTime.Now;
-             MessageBox.Show("Do you Want to Continue With Bill Amount of", txt_NetAmt.Text.ToString());
+            string BillNo = txt_BillNo.Text;
+             MessageBox.Show("Do you Want to Continue With Bill Amount of ₹ " + txt_NetAmt.Text.ToString());
             if (cmb_Name.Text != "" || txt_ContactNo.Text != "")
             {
                 if (!_Cust.checkCustomerAccount(cmb_Name.Text))
@@ -378,10 +397,11 @@ namespace PrimeSolutions
                         string SubCategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
                         string Amount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
                         //string narration = Convert.ToString(dgv_ItemInfo.Rows[i].Cells[" "].Value);
-                        string BillNo = Convert.ToString(txt_BillNo.Text);
+                        BillNo = Convert.ToString(txt_BillNo.Text);
                         string AccNo = Convert.ToString(txt_AccNo.Text);
+                        string size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["size"].Value);
 
-                        _Sale.AddItemDetails(Category, SubCategory, Amount, " ", BillNo, AccNo, date, "Sale");
+                        _Sale.AddItemDetails(Category, SubCategory, Amount, size, " ", BillNo, AccNo, dtp_Date.Text, "Sale");
                     }
 
                     else
@@ -390,12 +410,15 @@ namespace PrimeSolutions
                     }
 
                 }
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, txt_TotalAmt.Text, txt_Vat.Text, txt_NetAmt.Text, " ", date);
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, txt_TotalAmt.Text, txt_Vat.Text, txt_NetAmt.Text, " ", dtp_Date.Text);
+
             }
             catch (Exception ex)
             {
                 _error.AddException(ex, "Sale");
             }
+
+            _Sale.PrintBill(BillNo);
             MessageBox.Show("Sale Successfully Done");
             Masterclear();
             
@@ -411,6 +434,19 @@ namespace PrimeSolutions
             {
                 txt_TotalAmt.Focus();
             }
+        }
+
+        private int calculateVAT()
+        {
+            int varper = Convert.ToInt32(_common.GetTax());
+            int totalamt = Convert.ToInt32(txt_TotalAmt.Text);
+            int VAT = (totalamt) * varper / 100;
+            return VAT;
+        }
+
+        private void dgv_ItemInfo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
