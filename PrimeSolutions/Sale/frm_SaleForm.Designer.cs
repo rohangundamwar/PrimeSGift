@@ -49,6 +49,8 @@
             this.txt_Address = new System.Windows.Forms.TextBox();
             this.cmb_Name = new System.Windows.Forms.ComboBox();
             this.pnl_ItemInfo = new System.Windows.Forms.Panel();
+            this.txt_Size = new System.Windows.Forms.TextBox();
+            this.lbl_size = new System.Windows.Forms.Label();
             this.pnl_Button = new System.Windows.Forms.Panel();
             this.bttn_Delete = new System.Windows.Forms.Button();
             this.bttn_Reset = new System.Windows.Forms.Button();
@@ -73,6 +75,7 @@
             this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
             this.txt_TaxPer = new System.Windows.Forms.TextBox();
             this.txt_BalAmt = new System.Windows.Forms.TextBox();
@@ -90,9 +93,6 @@
             this.bttn_Clear = new System.Windows.Forms.Button();
             this.bttn_Sale = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
-            this.txt_Size = new System.Windows.Forms.TextBox();
-            this.lbl_size = new System.Windows.Forms.Label();
-            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -372,6 +372,28 @@
             this.pnl_ItemInfo.Size = new System.Drawing.Size(517, 142);
             this.pnl_ItemInfo.TabIndex = 8;
             // 
+            // txt_Size
+            // 
+            this.txt_Size.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txt_Size.Location = new System.Drawing.Point(433, 11);
+            this.txt_Size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txt_Size.Name = "txt_Size";
+            this.txt_Size.Size = new System.Drawing.Size(57, 19);
+            this.txt_Size.TabIndex = 25;
+            // 
+            // lbl_size
+            // 
+            this.lbl_size.AutoSize = true;
+            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_size.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lbl_size.Location = new System.Drawing.Point(380, 12);
+            this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_size.Name = "lbl_size";
+            this.lbl_size.Size = new System.Drawing.Size(38, 16);
+            this.lbl_size.TabIndex = 24;
+            this.lbl_size.Text = "Size";
+            // 
             // pnl_Button
             // 
             this.pnl_Button.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -395,6 +417,7 @@
             this.bttn_Delete.TabIndex = 3;
             this.bttn_Delete.Text = "Delete";
             this.bttn_Delete.UseVisualStyleBackColor = true;
+            this.bttn_Delete.Click += new System.EventHandler(this.bttn_Delete_Click);
             // 
             // bttn_Reset
             // 
@@ -417,6 +440,7 @@
             this.bttn_Update.TabIndex = 1;
             this.bttn_Update.Text = "Update";
             this.bttn_Update.UseVisualStyleBackColor = true;
+            this.bttn_Update.Click += new System.EventHandler(this.bttn_Update_Click);
             // 
             // bttn_Add
             // 
@@ -606,7 +630,7 @@
             this.dgv_ItemInfo.ReadOnly = true;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(652, 201);
             this.dgv_ItemInfo.TabIndex = 9;
-            this.dgv_ItemInfo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellContentClick);
+            this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick);
             // 
             // BarcodeNo
             // 
@@ -649,6 +673,12 @@
             this.TotalAmt.HeaderText = "TotalAmt";
             this.TotalAmt.Name = "TotalAmt";
             this.TotalAmt.ReadOnly = true;
+            // 
+            // size
+            // 
+            this.size.HeaderText = "size";
+            this.size.Name = "size";
+            this.size.ReadOnly = true;
             // 
             // pnl_PaymentOpt
             // 
@@ -853,34 +883,6 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(461, 284);
             this.panel.TabIndex = 12;
-            // 
-            // txt_Size
-            // 
-            this.txt_Size.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txt_Size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Size.Location = new System.Drawing.Point(433, 11);
-            this.txt_Size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_Size.Name = "txt_Size";
-            this.txt_Size.Size = new System.Drawing.Size(57, 19);
-            this.txt_Size.TabIndex = 25;
-            // 
-            // lbl_size
-            // 
-            this.lbl_size.AutoSize = true;
-            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_size.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_size.Location = new System.Drawing.Point(380, 12);
-            this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_size.Name = "lbl_size";
-            this.lbl_size.Size = new System.Drawing.Size(38, 16);
-            this.lbl_size.TabIndex = 24;
-            this.lbl_size.Text = "Size";
-            // 
-            // size
-            // 
-            this.size.HeaderText = "size";
-            this.size.Name = "size";
-            this.size.ReadOnly = true;
             // 
             // frm_SaleForm
             // 

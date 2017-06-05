@@ -31,16 +31,13 @@ namespace PrimeSolutions
             Masterclear();
             cmb_Name.Select();
             this.BringToFront();
-            
-            
-        
         }
 
         private void fiicomboox()
         {
             cmb_Name.DataSource = _objCustmor.getCustomerName();
-            cmb_Category.DataSource = _objCustmor.GetCategory();
-            cmb_SubCategory.DataSource = _objCustmor.GetSubCategory();
+            cmb_Category.DataSource = _objCustmor.FillCategory();
+            cmb_SubCategory.DataSource = _objCustmor.FillSubCategory();
         }
 
         private void Masterclear()
@@ -49,14 +46,14 @@ namespace PrimeSolutions
             cmb_Category.SelectedIndex = -1;
             cmb_SubCategory.SelectedIndex = -1;
             txt_Address.ResetText();
-            txt_BalAmt.Text = "0";
+            txt_BalAmt.ResetText();
             txt_BillNo.ResetText();
             txt_City.ResetText();
             txt_ContactNo.ResetText();
             txt_MobileNo.ResetText();
-            txt_NetAmt.Text = "0";
+            txt_NetAmt.ResetText();
             txt_PaidAmt.Text = "0";
-            txt_Qty.Text = "0";
+            txt_Qty.Text = "1";
             txt_TotalAmt.ResetText();
             txt_Vat.ResetText();
             txt_SellingAmt.Text = "0";
@@ -64,6 +61,7 @@ namespace PrimeSolutions
             txt_Vat.Text = "0";
             txt_TotalAmt.Text = "0";
             dgv_ItemInfo.Rows.Clear();
+            
             try
             {
                 txt_AccNo.Text = _objSQLHelper.gmGetMstID("P", "0");
@@ -85,20 +83,20 @@ namespace PrimeSolutions
 
         }
 
-        private void fillSupplier()
+        private DataTable fillSupplier()
         {
-            DataTable dt = _objCustmor.GetSupplier(cmb_Name.Text);
-            if (dt.Rows.Count > 0)
+            DataTable supplier = _objCustmor.GetSupplier(cmb_Name.Text);
+            if (supplier.Rows.Count > 0)
             {
-                txt_AccNo.Text = dt.Rows[0]["AccNo"].ToString();
-                txt_Address.Text = dt.Rows[0]["address"].ToString();
-                txt_City.Text = dt.Rows[0]["city"].ToString();
-                txt_ContactNo.Text = dt.Rows[0]["contact_no"].ToString();
-                txt_MobileNo.Text = dt.Rows[0]["phone_no"].ToString();
+                txt_AccNo.Text = supplier.Rows[0]["AccNo"].ToString();
+                txt_Address.Text = supplier.Rows[0]["address"].ToString();
+                txt_City.Text = supplier.Rows[0]["city"].ToString();
+                txt_ContactNo.Text = supplier.Rows[0]["contact_no"].ToString();
+                txt_MobileNo.Text = supplier.Rows[0]["phone_no"].ToString();
+                lbl_AccNo.Text = supplier.Rows[0]["AccNo"].ToString();
             }
-            else
-            { }
-           
+
+            return supplier;
         }
 
         private void txt_Address_KeyDown(object sender, KeyEventArgs e)
@@ -158,7 +156,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_PurchaseAmt.Focus();
+                txt_Size.Focus();
             }
         }
 
@@ -238,7 +236,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Size.Focus();
+                txt_Qty.Focus();
             }
         }
 
@@ -363,7 +361,7 @@ namespace PrimeSolutions
             {
 
                 
-                dgv_ItemInfo.Rows.Add(cmb_Category.Text, cmb_SubCategory.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_SellingAmt.Text, txt_Amt.Text,txt_BillNo.Text,txt_Size.Text);
+                dgv_ItemInfo.Rows.Add(cmb_Category.Text, cmb_SubCategory.Text, txt_Size.Text, txt_PurchaseAmt.Text, txt_Qty.Text, txt_SellingAmt.Text, txt_Amt.Text);
                 Clear();
                 
             }
@@ -462,6 +460,11 @@ namespace PrimeSolutions
                 if (!_objCustmor.SupplierDetail(cmb_Name.Text))
                 {
                     _objCustmor.InsertCustomerInfo(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_City.Text, txt_ContactNo.Text, txt_MobileNo.Text, txt_BillNo.Text, dtp_Date.Text);
+                }
+                else
+                {
+                    DataTable dt = this.fillSupplier();
+                    txt_AccNo.Text = dt.Rows[0]["AccNo"].ToString();
                 }
                 for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
                 {
@@ -580,10 +583,8 @@ namespace PrimeSolutions
                             }
                         }
                     }
-     
-                        _objCustmor.InsertBillDetail(txt_TotalAmt.Text, txt_VatValue.Text, txt_Vat.Text, txt_NetAmt.Text, txt_PaidAmt.Text, txt_BalAmt.Text, txt_AccNo.Text, dtp_Date.Text);
-                    
                 }
+                _objCustmor.InsertBillDetail(txt_TotalAmt.Text, txt_VatValue.Text, txt_Vat.Text, txt_NetAmt.Text, txt_PaidAmt.Text, txt_BalAmt.Text, txt_AccNo.Text, dtp_Date.Text, txt_BillNo.Text);
                 Masterclear();
                 MessageBox.Show("Purchased Done");
                 cmb_Name.Select();
@@ -623,16 +624,17 @@ namespace PrimeSolutions
 
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Category"].Value = cmb_Category.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value = cmb_SubCategory.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["PurchaseAmt"].Value = txt_PurchaseAmt;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["PurchaseAmt"].Value = txt_PurchaseAmt.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SellingAmt"].Value = txt_SellingAmt.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["size"].Value = txt_Size.Text;
                 dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value = txt_Qty.Text;
-                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value = txt_TotalAmt.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value = txt_Amt.Text;
                 Calculate();
-                MessageBox.Show("");
+                
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Unable To Delete", "Application says", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _error.AddException(ex, "Purchase");
             }
             bttn_Add.Enabled = true;
@@ -642,7 +644,20 @@ namespace PrimeSolutions
 
         private void bttn_Delete_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
+                dgv_ItemInfo.Rows.RemoveAt(dgv_ItemInfo.CurrentCell.RowIndex);
+                Calculate();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable To Delete", "Application says", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                int line = _error.GetLineNumber(ex);
+                _error.AddException(ex, "Sale");
+            }
+            bttn_Add.Enabled = true;
+            Clear();
         }
 
         private void dgv_ItemInfo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -675,7 +690,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Qty.Focus();
+                txt_PurchaseAmt.Focus();
             }
         }
     }

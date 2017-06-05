@@ -30,7 +30,7 @@ namespace PrimeSolutions.Common
 
         private void FillGrid()
         {
-            DataTable dt = _objCustmor.GetSubCategory();
+            DataTable dt = _objCustmor.FillSubCategory();
              for (int i =0; i < dt.Rows.Count;i++)
                 {
                     dgv_SubCategory.Rows.Add();

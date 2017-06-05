@@ -1,4 +1,5 @@
-﻿using PrimeSolutions.Library;
+﻿using PrimeSolutions.ClassFile;
+using PrimeSolutions.Library;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace PrimeSolutions
         SaleCommon _Sale = new SaleCommon();
         CustomerCommon _Cust = new CustomerCommon();
         ErrorLog _error = new ErrorLog();
+        AllClassFile _a = new AllClassFile();
 
         private void frm_PurchaseForm_Load(object sender, EventArgs e)
         {
@@ -29,8 +31,8 @@ namespace PrimeSolutions
             cmb_Name.Select();
             this.BringToFront();
             Clear();
-            cmb_Category.DataSource = _common.GetCategory();
-            cmb_SubCategory.DataSource = _common.GetSubCategory();
+            cmb_Category.DataSource = _a.FillCategory();
+            cmb_SubCategory.DataSource = _a.FillSubCategory();
             txt_TaxPer.Text =Convert.ToString(_common.GetTax());
 
         }
@@ -65,9 +67,24 @@ namespace PrimeSolutions
         {
             if (e.KeyCode ==  Keys.Enter)
             {
+                findCustomer();
                 txt_Address.Focus();
             }
 
+        }
+
+        private void findCustomer()
+        {
+            DataTable dt = _Sale.GetCustomer(cmb_Name.Text);
+            if (dt.Rows.Count > 0)
+            {
+                txt_AccNo.Text = dt.Rows[0]["CustId"].ToString();
+                txt_Address.Text = dt.Rows[0]["address"].ToString();
+                //txt_City.Text = dt.Rows[0]["city"].ToString();
+                txt_ContactNo.Text = dt.Rows[0]["ContactNo"].ToString();
+                //txt_MobileNo.Text = dt.Rows[0]["phone_no"].ToString();
+                //lbl_AccNo.Text = dt.Rows[0]["AccNo"].ToString();
+            }
         }
 
         private void txt_Address_KeyDown(object sender, KeyEventArgs e)
@@ -421,6 +438,8 @@ namespace PrimeSolutions
             _Sale.PrintBill(BillNo);
             MessageBox.Show("Sale Successfully Done");
             Masterclear();
+            this.BringToFront();
+            
             
         }
 
@@ -444,8 +463,70 @@ namespace PrimeSolutions
             return VAT;
         }
 
-        private void dgv_ItemInfo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_ItemInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                if (e.RowIndex > -1 && e.ColumnIndex >= -1)
+                {
+                    bttn_Delete.Enabled = true;
+                    bttn_Update.Enabled = true;
+                    bttn_Add.Enabled = false;
+                    cmb_Category.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Category"].Value.ToString();
+                    cmb_SubCategory.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value.ToString();
+                    txt_SellingAmt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SellingAmt"].Value.ToString();
+                    txt_Size.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["size"].Value.ToString();
+                    txt_Qty.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value.ToString();
+                    txt_Amt.Text = dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value.ToString();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                _error.AddException(ex, "Sale");
+            }
+        }
+
+        private void bttn_Update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Category"].Value = cmb_Category.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SubCategory"].Value = cmb_SubCategory.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["SellingAmt"].Value = txt_SellingAmt.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["size"].Value = txt_Size.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["Qty"].Value = txt_Qty.Text;
+                dgv_ItemInfo.Rows[dgv_ItemInfo.CurrentRow.Index].Cells["TotalAmt"].Value = txt_Amt.Text;
+                Calculate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable To Delete", "Application says", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _error.AddException(ex, "sale");
+            }
+            bttn_Add.Enabled = true;
+            Clear();
+            Calculate();
+            txt_Vat.Text = calculateVAT().ToString();
+            txt_NetAmt.Text = Convert.ToString(Convert.ToInt32(txt_Vat.Text) + Convert.ToInt32(txt_TotalAmt.Text));
+        }
+
+        private void bttn_Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dgv_ItemInfo.Rows.RemoveAt(dgv_ItemInfo.CurrentCell.RowIndex);
+                Calculate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable To Delete", "Application says", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                int line = _error.GetLineNumber(ex);
+                _error.AddException(ex, "Sale");
+            }
+            bttn_Add.Enabled = true;
+            Clear();
 
         }
     }

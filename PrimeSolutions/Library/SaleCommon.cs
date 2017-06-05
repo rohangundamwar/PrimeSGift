@@ -46,7 +46,7 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
-        private DataTable GetBillItem(string BillNo)
+        public DataTable GetBillItem(string BillNo)
         {
             string str = "Select * from BillItem where SaleBillNo = '" + BillNo + "'";
             DataTable dt = _sql.GetDataTable(str);
@@ -68,6 +68,13 @@ namespace PrimeSolutions.Library
             DataTable dt = _sql.GetDataTable(str2);
             return dt;
 
+        }
+
+        public DataTable GetCustomer(string Name)
+        {
+            string str = "Select * From CustomerMaster where name = '" + Name + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
         }
 
         public void PrintBill(string BillNO)
@@ -175,7 +182,27 @@ namespace PrimeSolutions.Library
 
         }
 
-        
+        public DataTable GetCustomerReport(string date)
+        {
+            string str = "Select * From SaleBillMaster where Date = '" + date + "'";
+            DataTable dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public string GetCustomerByCustid(string custid)
+        {
+            string str = "select Name from customermaster where CustId='"+custid+"'";
+            string cust = _sql.ExecuteScalar(str);
+            return cust;
+        }
+
+        public DataTable GetSaleBillData()
+        {
+            string str = "select Distinct BillNo from SaleBillMaster";
+            DataTable Bill = _sql.GetDataTable(str);
+            return Bill;
+        }
+
     }
 }
 

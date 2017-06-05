@@ -16,5 +16,29 @@ namespace PrimeSolutions.Library
             DataTable d1 =  _sql.GetDataTable(str);
             return d1;
         }
+
+        public DataTable GetSupplierBillNo()
+        {
+            DataTable dt;
+            string str = "select distinct BillNo from PurchaseBillMaster";
+            dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetPurchaseBillItem(string BillNo)
+        {
+            DataTable dt;
+            string str = "select distinct Category,Sub_Category,Size from BillItem where PurchaseBill = '"+BillNo+"'";
+            dt = _sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetPurchaseBill()
+        {
+            DataTable dt;
+            string str = "select * from PurchaseBillMaster ";
+            dt = _sql.GetDataTable(str);
+            return dt;
+        }
     }
 }

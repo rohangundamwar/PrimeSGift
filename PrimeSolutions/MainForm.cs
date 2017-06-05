@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using PrimeSolutions.Common;
+using PrimeSolutions.Report;
+using PrimeSolutions.Report.Customer;
+using PrimeSolutions.Report.Sale;
+using PrimeSolutions.Report.Purchase;
 
 namespace PrimeSolutions
 {
@@ -20,7 +24,15 @@ namespace PrimeSolutions
 
         private void supplierDailyReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SupplierBill  _form = new SupplierBill();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,22 +73,18 @@ namespace PrimeSolutions
 
         private void stockCheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PurchaseCommon _p = new PurchaseCommon();
-            DataTable dt = _p.GetStock();
-            
-            dgv_stock.Visible = true;
-            dgv_stock.AutoGenerateColumns = true;
-            dgv_stock.DataSource = dt;
-            
-        }
+            frm_Stock _form = new frm_Stock();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
 
-        private void dgv_stock_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                dgv_stock.Visible = false;
-            }
         }
+        
 
         private void categoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -117,6 +125,61 @@ namespace PrimeSolutions
             _form.Show();
         }
 
+        private void backUpDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_backup _b = new frm_backup();
+            _b.ShowDialog();
+        }
+
+        private void saleToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            frm_DuplicateBill _d = new frm_DuplicateBill();
+            _d.ShowDialog();
+        }
+
+        private void customerDatatabseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_CustomerContact _form = new frm_CustomerContact();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
+        }
+
+        private void customerDailyReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SaleReport _form = new frm_SaleReport();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
+        }
         
+        private void duplicateBillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_DuplicateBill _d = new frm_DuplicateBill();
+            _d.ShowDialog();
+        }
+
+        private void supplierBillDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_SupplierBill _form = new frm_SupplierBill();
+            this.IsMdiContainer = true;
+            _form.TopLevel = false;
+            panel2.Controls.Add(_form);
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            panel2.Height = _form.Height;
+            panel2.Width = _form.Width;
+            _form.Dock = DockStyle.Fill;
+            _form.Show();
+        }
     }
 }

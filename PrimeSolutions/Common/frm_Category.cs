@@ -17,6 +17,7 @@ namespace PrimeSolutions.Common
             InitializeComponent();
         }
         AllClassFile _objCustmor = new AllClassFile();
+        
         private void frm_Category_Load(object sender, EventArgs e)
         {
             txt_Category.Select();
@@ -30,7 +31,7 @@ namespace PrimeSolutions.Common
 
         private void FillGrid()
         {
-            DataTable dt = _objCustmor.GetCategory();
+            DataTable dt = _objCustmor.FillCategory();
              for (int i =0; i < dt.Rows.Count;i++)
                 {
                     dgv_Category.Rows.Add();

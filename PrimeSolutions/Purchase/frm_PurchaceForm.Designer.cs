@@ -70,14 +70,6 @@
             this.lbl_PurchaseAmt = new System.Windows.Forms.Label();
             this.lbl_SubCategory = new System.Windows.Forms.Label();
             this.dgv_ItemInfo = new System.Windows.Forms.DataGridView();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PurchaseAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_PaymentOpt = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_VatValue = new System.Windows.Forms.TextBox();
@@ -97,6 +89,14 @@
             this.bttn_Close = new System.Windows.Forms.Button();
             this.bttn_Purchase = new System.Windows.Forms.Button();
             this.pnl_Picture = new System.Windows.Forms.Panel();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PurchaseAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SellingAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_Main.SuspendLayout();
             this.pnl_Top.SuspendLayout();
             this.pnl_SupplierInfo.SuspendLayout();
@@ -394,22 +394,22 @@
             // 
             this.txt_Size.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Size.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Size.Location = new System.Drawing.Point(61, 78);
+            this.txt_Size.Location = new System.Drawing.Point(475, 23);
             this.txt_Size.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Size.Name = "txt_Size";
-            this.txt_Size.Size = new System.Drawing.Size(57, 19);
+            this.txt_Size.Size = new System.Drawing.Size(37, 19);
             this.txt_Size.TabIndex = 23;
             this.txt_Size.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Size_KeyDown);
             // 
             // lbl_size
             // 
             this.lbl_size.AutoSize = true;
-            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_size.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
             this.lbl_size.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_size.Location = new System.Drawing.Point(8, 79);
+            this.lbl_size.Location = new System.Drawing.Point(478, 5);
             this.lbl_size.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_size.Name = "lbl_size";
-            this.lbl_size.Size = new System.Drawing.Size(38, 16);
+            this.lbl_size.Size = new System.Drawing.Size(31, 13);
             this.lbl_size.TabIndex = 22;
             this.lbl_size.Text = "Size";
             // 
@@ -477,7 +477,7 @@
             // 
             this.txt_Amt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Amt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Amt.Location = new System.Drawing.Point(356, 78);
+            this.txt_Amt.Location = new System.Drawing.Point(356, 80);
             this.txt_Amt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Amt.Name = "txt_Amt";
             this.txt_Amt.Size = new System.Drawing.Size(144, 19);
@@ -490,7 +490,7 @@
             this.lbl_Amount.AutoSize = true;
             this.lbl_Amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Amount.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Amount.Location = new System.Drawing.Point(283, 79);
+            this.lbl_Amount.Location = new System.Drawing.Point(257, 81);
             this.lbl_Amount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Amount.Name = "lbl_Amount";
             this.lbl_Amount.Size = new System.Drawing.Size(59, 16);
@@ -501,7 +501,7 @@
             // 
             this.txt_Qty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_Qty.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Qty.Location = new System.Drawing.Point(199, 78);
+            this.txt_Qty.Location = new System.Drawing.Point(115, 78);
             this.txt_Qty.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Qty.Name = "txt_Qty";
             this.txt_Qty.Size = new System.Drawing.Size(73, 19);
@@ -515,7 +515,7 @@
             this.lbl_Quantity.AutoSize = true;
             this.lbl_Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Quantity.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Quantity.Location = new System.Drawing.Point(128, 79);
+            this.lbl_Quantity.Location = new System.Drawing.Point(8, 81);
             this.lbl_Quantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Quantity.Name = "lbl_Quantity";
             this.lbl_Quantity.Size = new System.Drawing.Size(64, 16);
@@ -526,7 +526,7 @@
             // 
             this.txt_SellingAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_SellingAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_SellingAmt.Location = new System.Drawing.Point(356, 48);
+            this.txt_SellingAmt.Location = new System.Drawing.Point(356, 50);
             this.txt_SellingAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_SellingAmt.Name = "txt_SellingAmt";
             this.txt_SellingAmt.Size = new System.Drawing.Size(144, 19);
@@ -539,7 +539,7 @@
             this.lbl_SellingAmt.AutoSize = true;
             this.lbl_SellingAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_SellingAmt.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SellingAmt.Location = new System.Drawing.Point(257, 49);
+            this.lbl_SellingAmt.Location = new System.Drawing.Point(257, 51);
             this.lbl_SellingAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SellingAmt.Name = "lbl_SellingAmt";
             this.lbl_SellingAmt.Size = new System.Drawing.Size(86, 16);
@@ -550,7 +550,7 @@
             // 
             this.txt_PurchaseAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_PurchaseAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PurchaseAmt.Location = new System.Drawing.Point(115, 48);
+            this.txt_PurchaseAmt.Location = new System.Drawing.Point(115, 50);
             this.txt_PurchaseAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PurchaseAmt.Name = "txt_PurchaseAmt";
             this.txt_PurchaseAmt.Size = new System.Drawing.Size(137, 19);
@@ -563,7 +563,7 @@
             // 
             this.cmb_SubCategory.DisplayMember = "SubCategory";
             this.cmb_SubCategory.FormattingEnabled = true;
-            this.cmb_SubCategory.Location = new System.Drawing.Point(356, 10);
+            this.cmb_SubCategory.Location = new System.Drawing.Point(324, 15);
             this.cmb_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_SubCategory.Name = "cmb_SubCategory";
             this.cmb_SubCategory.Size = new System.Drawing.Size(144, 27);
@@ -576,7 +576,7 @@
             // 
             this.cmb_Category.DisplayMember = "Category";
             this.cmb_Category.FormattingEnabled = true;
-            this.cmb_Category.Location = new System.Drawing.Point(115, 10);
+            this.cmb_Category.Location = new System.Drawing.Point(83, 15);
             this.cmb_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmb_Category.Name = "cmb_Category";
             this.cmb_Category.Size = new System.Drawing.Size(137, 27);
@@ -590,7 +590,7 @@
             this.lbl_Category.AutoSize = true;
             this.lbl_Category.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Category.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_Category.Location = new System.Drawing.Point(6, 16);
+            this.lbl_Category.Location = new System.Drawing.Point(8, 21);
             this.lbl_Category.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Category.Name = "lbl_Category";
             this.lbl_Category.Size = new System.Drawing.Size(71, 16);
@@ -602,7 +602,7 @@
             this.lbl_PurchaseAmt.AutoSize = true;
             this.lbl_PurchaseAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_PurchaseAmt.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_PurchaseAmt.Location = new System.Drawing.Point(6, 49);
+            this.lbl_PurchaseAmt.Location = new System.Drawing.Point(8, 51);
             this.lbl_PurchaseAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PurchaseAmt.Name = "lbl_PurchaseAmt";
             this.lbl_PurchaseAmt.Size = new System.Drawing.Size(103, 16);
@@ -614,7 +614,7 @@
             this.lbl_SubCategory.AutoSize = true;
             this.lbl_SubCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_SubCategory.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lbl_SubCategory.Location = new System.Drawing.Point(257, 15);
+            this.lbl_SubCategory.Location = new System.Drawing.Point(228, 20);
             this.lbl_SubCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_SubCategory.Name = "lbl_SubCategory";
             this.lbl_SubCategory.Size = new System.Drawing.Size(98, 16);
@@ -632,12 +632,12 @@
             this.dgv_ItemInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Category,
             this.SubCategory,
+            this.size,
             this.PurchaseAmt,
             this.Qty,
             this.SellingAmt,
             this.TotalAmt,
-            this.PBill,
-            this.size});
+            this.PBill});
             this.dgv_ItemInfo.Location = new System.Drawing.Point(4, 341);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
             this.dgv_ItemInfo.ReadOnly = true;
@@ -645,61 +645,6 @@
             this.dgv_ItemInfo.Size = new System.Drawing.Size(652, 201);
             this.dgv_ItemInfo.TabIndex = 9;
             this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick);
-            // 
-            // Category
-            // 
-            this.Category.FillWeight = 110.8629F;
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // SubCategory
-            // 
-            this.SubCategory.FillWeight = 110.8629F;
-            this.SubCategory.HeaderText = "SubCategory";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
-            // 
-            // PurchaseAmt
-            // 
-            this.PurchaseAmt.FillWeight = 110.8629F;
-            this.PurchaseAmt.HeaderText = "PurchaseAmt";
-            this.PurchaseAmt.Name = "PurchaseAmt";
-            this.PurchaseAmt.ReadOnly = true;
-            // 
-            // Qty
-            // 
-            this.Qty.FillWeight = 45.68528F;
-            this.Qty.HeaderText = "Qty";
-            this.Qty.Name = "Qty";
-            this.Qty.ReadOnly = true;
-            // 
-            // SellingAmt
-            // 
-            this.SellingAmt.FillWeight = 110.8629F;
-            this.SellingAmt.HeaderText = "SellingAmt";
-            this.SellingAmt.Name = "SellingAmt";
-            this.SellingAmt.ReadOnly = true;
-            // 
-            // TotalAmt
-            // 
-            this.TotalAmt.FillWeight = 110.8629F;
-            this.TotalAmt.HeaderText = "TotalAmt";
-            this.TotalAmt.Name = "TotalAmt";
-            this.TotalAmt.ReadOnly = true;
-            // 
-            // PBill
-            // 
-            this.PBill.HeaderText = "PBill";
-            this.PBill.Name = "PBill";
-            this.PBill.ReadOnly = true;
-            this.PBill.Visible = false;
-            // 
-            // size
-            // 
-            this.size.HeaderText = "size";
-            this.size.Name = "size";
-            this.size.ReadOnly = true;
             // 
             // pnl_PaymentOpt
             // 
@@ -936,6 +881,62 @@
             this.pnl_Picture.Size = new System.Drawing.Size(461, 284);
             this.pnl_Picture.TabIndex = 12;
             // 
+            // Category
+            // 
+            this.Category.FillWeight = 96.51263F;
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // SubCategory
+            // 
+            this.SubCategory.FillWeight = 96.51263F;
+            this.SubCategory.HeaderText = "SubCategory";
+            this.SubCategory.Name = "SubCategory";
+            this.SubCategory.ReadOnly = true;
+            // 
+            // size
+            // 
+            this.size.FillWeight = 50F;
+            this.size.HeaderText = "size";
+            this.size.Name = "size";
+            this.size.ReadOnly = true;
+            // 
+            // PurchaseAmt
+            // 
+            this.PurchaseAmt.FillWeight = 96.51263F;
+            this.PurchaseAmt.HeaderText = "PurchaseAmt";
+            this.PurchaseAmt.Name = "PurchaseAmt";
+            this.PurchaseAmt.ReadOnly = true;
+            // 
+            // Qty
+            // 
+            this.Qty.FillWeight = 39.77171F;
+            this.Qty.HeaderText = "Qty";
+            this.Qty.Name = "Qty";
+            this.Qty.ReadOnly = true;
+            // 
+            // SellingAmt
+            // 
+            this.SellingAmt.FillWeight = 96.51263F;
+            this.SellingAmt.HeaderText = "SellingAmt";
+            this.SellingAmt.Name = "SellingAmt";
+            this.SellingAmt.ReadOnly = true;
+            // 
+            // TotalAmt
+            // 
+            this.TotalAmt.FillWeight = 96.51263F;
+            this.TotalAmt.HeaderText = "TotalAmt";
+            this.TotalAmt.Name = "TotalAmt";
+            this.TotalAmt.ReadOnly = true;
+            // 
+            // PBill
+            // 
+            this.PBill.HeaderText = "PBill";
+            this.PBill.Name = "PBill";
+            this.PBill.ReadOnly = true;
+            this.PBill.Visible = false;
+            // 
             // frm_PurchaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -1037,15 +1038,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_VatValue;
+        private System.Windows.Forms.TextBox txt_Size;
+        private System.Windows.Forms.Label lbl_size;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn size;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseAmt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn SellingAmt;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalAmt;
         private System.Windows.Forms.DataGridViewTextBoxColumn PBill;
-        private System.Windows.Forms.TextBox txt_Size;
-        private System.Windows.Forms.Label lbl_size;
-        private System.Windows.Forms.DataGridViewTextBoxColumn size;
     }
 }
