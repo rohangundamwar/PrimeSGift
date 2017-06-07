@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -29,5 +30,25 @@ namespace PrimeSolutions.Library
             }
 
         }
+
+        public DataTable GetCustomerDeatils()
+        {
+            string str = "select * from CustomerMaster ";
+            DataTable dt;
+            dt = _Sql.GetDataTable(str);
+            return dt;
+        }
+
+        public DataTable GetCustomerItemDeatils(string CustId)
+        {
+            string str1 = "select BillNo from SaleBillMaster where CustomerId='" + CustId + "' ";
+            string str2 = _Sql.ExecuteScalar(str1);
+            string str = "select * from BillItem where SaleBillNo='"+str2+"'";
+            DataTable dt = _Sql.GetDataTable(str);
+            dt = _Sql.GetDataTable(str);
+            return dt;
+        }
+
+
     }
 }

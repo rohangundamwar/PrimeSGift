@@ -54,10 +54,30 @@ namespace PrimeSolutions.Library
         }
 
 
+        public string GetConSting()
+        {
+
+            string line="";
+
+            // Read the file and display it line by line.
+            try
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(Environment.CurrentDirectory + "\\ConnectionString.txt");
+                while ((line = file.ReadLine()) != null)
+                {
+                    clsVariable.DatabaseName = line;
+                }
+                
+                file.Close();
+            }
+            catch { }
+            return line;
+            
+        }
         #region new Connection
         #region Class Level Variable
 
-       
+
         #endregion
 
         #region Openconnection Function

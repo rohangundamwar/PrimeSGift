@@ -42,12 +42,11 @@
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.customerDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerDatatabseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.supplierDailyReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.supplierPaymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierBillDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.duplicateBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saleToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.stockCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +54,7 @@
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prefrencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backUpDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,7 +62,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dgv_stock = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbl_developer = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -70,8 +69,6 @@
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_stock)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -189,7 +186,8 @@
             // saleToolStripMenuItem1
             // 
             this.saleToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customerDailyReportToolStripMenuItem});
+            this.customerDailyReportToolStripMenuItem,
+            this.customerDatatabseToolStripMenuItem});
             this.saleToolStripMenuItem1.Name = "saleToolStripMenuItem1";
             this.saleToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.saleToolStripMenuItem1.Text = "Sale";
@@ -199,12 +197,20 @@
             this.customerDailyReportToolStripMenuItem.Name = "customerDailyReportToolStripMenuItem";
             this.customerDailyReportToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
             this.customerDailyReportToolStripMenuItem.Text = "Customer Daily Report";
+            this.customerDailyReportToolStripMenuItem.Click += new System.EventHandler(this.customerDailyReportToolStripMenuItem_Click);
+            // 
+            // customerDatatabseToolStripMenuItem
+            // 
+            this.customerDatatabseToolStripMenuItem.Name = "customerDatatabseToolStripMenuItem";
+            this.customerDatatabseToolStripMenuItem.Size = new System.Drawing.Size(230, 24);
+            this.customerDatatabseToolStripMenuItem.Text = "Customer Datatabse";
+            this.customerDatatabseToolStripMenuItem.Click += new System.EventHandler(this.customerDatatabseToolStripMenuItem_Click);
             // 
             // purchaseToolStripMenuItem1
             // 
             this.purchaseToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.supplierDailyReportToolStripMenuItem,
-            this.supplierPaymentToolStripMenuItem});
+            this.supplierBillDetailsToolStripMenuItem});
             this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
             this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(166, 24);
             this.purchaseToolStripMenuItem1.Text = "Purchase";
@@ -212,36 +218,23 @@
             // supplierDailyReportToolStripMenuItem
             // 
             this.supplierDailyReportToolStripMenuItem.Name = "supplierDailyReportToolStripMenuItem";
-            this.supplierDailyReportToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.supplierDailyReportToolStripMenuItem.Text = "Supplier Daily Report";
+            this.supplierDailyReportToolStripMenuItem.Size = new System.Drawing.Size(267, 24);
+            this.supplierDailyReportToolStripMenuItem.Text = "Supplier Item Details Report";
             this.supplierDailyReportToolStripMenuItem.Click += new System.EventHandler(this.supplierDailyReportToolStripMenuItem_Click);
             // 
-            // supplierPaymentToolStripMenuItem
+            // supplierBillDetailsToolStripMenuItem
             // 
-            this.supplierPaymentToolStripMenuItem.Name = "supplierPaymentToolStripMenuItem";
-            this.supplierPaymentToolStripMenuItem.Size = new System.Drawing.Size(247, 24);
-            this.supplierPaymentToolStripMenuItem.Text = "Supplier Payment Report";
+            this.supplierBillDetailsToolStripMenuItem.Name = "supplierBillDetailsToolStripMenuItem";
+            this.supplierBillDetailsToolStripMenuItem.Size = new System.Drawing.Size(267, 24);
+            this.supplierBillDetailsToolStripMenuItem.Text = "Supplier Bill Details";
+            this.supplierBillDetailsToolStripMenuItem.Click += new System.EventHandler(this.supplierBillDetailsToolStripMenuItem_Click);
             // 
             // duplicateBillToolStripMenuItem
             // 
-            this.duplicateBillToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saleToolStripMenuItem2,
-            this.purchaseToolStripMenuItem2});
             this.duplicateBillToolStripMenuItem.Name = "duplicateBillToolStripMenuItem";
             this.duplicateBillToolStripMenuItem.Size = new System.Drawing.Size(166, 24);
             this.duplicateBillToolStripMenuItem.Text = "Duplicate Bill";
-            // 
-            // saleToolStripMenuItem2
-            // 
-            this.saleToolStripMenuItem2.Name = "saleToolStripMenuItem2";
-            this.saleToolStripMenuItem2.Size = new System.Drawing.Size(138, 24);
-            this.saleToolStripMenuItem2.Text = "Sale ";
-            // 
-            // purchaseToolStripMenuItem2
-            // 
-            this.purchaseToolStripMenuItem2.Name = "purchaseToolStripMenuItem2";
-            this.purchaseToolStripMenuItem2.Size = new System.Drawing.Size(138, 24);
-            this.purchaseToolStripMenuItem2.Text = "Purchase";
+            this.duplicateBillToolStripMenuItem.Click += new System.EventHandler(this.duplicateBillToolStripMenuItem_Click);
             // 
             // stockCheckToolStripMenuItem
             // 
@@ -280,7 +273,8 @@
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.errorReportToolStripMenuItem,
-            this.prefrencesToolStripMenuItem});
+            this.prefrencesToolStripMenuItem,
+            this.backUpDataToolStripMenuItem});
             this.settingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Settings;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
@@ -291,14 +285,21 @@
             // errorReportToolStripMenuItem
             // 
             this.errorReportToolStripMenuItem.Name = "errorReportToolStripMenuItem";
-            this.errorReportToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.errorReportToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.errorReportToolStripMenuItem.Text = "Error Report";
             // 
             // prefrencesToolStripMenuItem
             // 
             this.prefrencesToolStripMenuItem.Name = "prefrencesToolStripMenuItem";
-            this.prefrencesToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.prefrencesToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.prefrencesToolStripMenuItem.Text = "Prefrences";
+            // 
+            // backUpDataToolStripMenuItem
+            // 
+            this.backUpDataToolStripMenuItem.Name = "backUpDataToolStripMenuItem";
+            this.backUpDataToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.backUpDataToolStripMenuItem.Text = "BackUp Data";
+            this.backUpDataToolStripMenuItem.Click += new System.EventHandler(this.backUpDataToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -328,9 +329,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(181, 299);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(215, 13);
+            this.label2.Size = new System.Drawing.Size(217, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "A Unit of Shiv Malhar TEchnologies Pvt.Ltd.";
+            this.label2.Text = "A Unit of Shiv Malhar Technologies Pvt. Ltd.";
             // 
             // panel4
             // 
@@ -366,22 +367,10 @@
             // panel2
             // 
             this.panel2.AutoSize = true;
-            this.panel2.Controls.Add(this.dgv_stock);
             this.panel2.Location = new System.Drawing.Point(7, 6);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(610, 271);
             this.panel2.TabIndex = 7;
-            // 
-            // dgv_stock
-            // 
-            this.dgv_stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_stock.Location = new System.Drawing.Point(7, 17);
-            this.dgv_stock.Name = "dgv_stock";
-            this.dgv_stock.ReadOnly = true;
-            this.dgv_stock.Size = new System.Drawing.Size(600, 150);
-            this.dgv_stock.TabIndex = 0;
-            this.dgv_stock.Visible = false;
-            this.dgv_stock.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_stock_KeyDown);
             // 
             // panel3
             // 
@@ -434,8 +423,6 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_stock)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -455,11 +442,8 @@
         private System.Windows.Forms.ToolStripMenuItem customerDailyReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem supplierDailyReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem supplierPaymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateBillToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saleToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem purchaseToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem openingBalanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem debitToolStripMenuItem;
@@ -480,9 +464,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem stockCheckToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dgv_stock;
         private System.Windows.Forms.ToolStripMenuItem categoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem subCategoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backUpDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customerDatatabseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierBillDetailsToolStripMenuItem;
     }
 }
 
