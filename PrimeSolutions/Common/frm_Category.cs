@@ -116,5 +116,13 @@ namespace PrimeSolutions.Common
         {
             this.Close();
         }
+
+        private void txt_Category_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                bttn_Add_Click(sender, e);
+            }
+        }
     }
 }

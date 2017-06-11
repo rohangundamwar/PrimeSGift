@@ -32,6 +32,8 @@
             this.lbl_SrNo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv_SubCategory = new System.Windows.Forms.DataGridView();
+            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txt_SubCategory = new System.Windows.Forms.TextBox();
             this.lbl_SubCategory = new System.Windows.Forms.Label();
             this.pnl_Button = new System.Windows.Forms.Panel();
@@ -39,8 +41,6 @@
             this.bttn_Update = new System.Windows.Forms.Button();
             this.bttn_Add = new System.Windows.Forms.Button();
             this.bttn_Close = new System.Windows.Forms.Button();
-            this.SrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnl_Top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SubCategory)).BeginInit();
             this.pnl_Button.SuspendLayout();
@@ -100,6 +100,20 @@
             this.dgv_SubCategory.TabIndex = 3;
             this.dgv_SubCategory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Category_CellClick);
             // 
+            // SrNo
+            // 
+            this.SrNo.FillWeight = 86.29442F;
+            this.SrNo.HeaderText = "SrNo";
+            this.SrNo.Name = "SrNo";
+            this.SrNo.ReadOnly = true;
+            // 
+            // SubCategory
+            // 
+            this.SubCategory.FillWeight = 113.7056F;
+            this.SubCategory.HeaderText = "Category";
+            this.SubCategory.Name = "SubCategory";
+            this.SubCategory.ReadOnly = true;
+            // 
             // txt_SubCategory
             // 
             this.txt_SubCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -109,6 +123,7 @@
             this.txt_SubCategory.Name = "txt_SubCategory";
             this.txt_SubCategory.Size = new System.Drawing.Size(275, 20);
             this.txt_SubCategory.TabIndex = 11;
+            this.txt_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SubCategory_KeyDown);
             // 
             // lbl_SubCategory
             // 
@@ -181,20 +196,6 @@
             this.bttn_Close.Text = "Close";
             this.bttn_Close.UseVisualStyleBackColor = true;
             this.bttn_Close.Click += new System.EventHandler(this.bttn_Close_Click);
-            // 
-            // SrNo
-            // 
-            this.SrNo.FillWeight = 86.29442F;
-            this.SrNo.HeaderText = "SrNo";
-            this.SrNo.Name = "SrNo";
-            this.SrNo.ReadOnly = true;
-            // 
-            // SubCategory
-            // 
-            this.SubCategory.FillWeight = 113.7056F;
-            this.SubCategory.HeaderText = "Category";
-            this.SubCategory.Name = "SubCategory";
-            this.SubCategory.ReadOnly = true;
             // 
             // frm_SubCategory
             // 

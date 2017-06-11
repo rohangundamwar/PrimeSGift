@@ -397,7 +397,7 @@ namespace PrimeSolutions.Library
 
                 case "P":
 
-                    SQL = "Select Max(Right(SupplierId,4))+1 As MaxID From SupplierMaster Where Right(Left(SupplierId,1),1)= 'P'";
+                    SQL = "Select Max(Right(AccNo,4))+1 As MaxID From SupplierMaster Where Right(Left(AccNo,1),1)= 'P'";
                     break;
 
                 case "Q":

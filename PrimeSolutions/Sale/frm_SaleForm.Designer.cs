@@ -514,6 +514,7 @@
             this.txt_SellingAmt.Name = "txt_SellingAmt";
             this.txt_SellingAmt.Size = new System.Drawing.Size(136, 19);
             this.txt_SellingAmt.TabIndex = 16;
+            this.txt_SellingAmt.TextChanged += new System.EventHandler(this.txt_SellingAmt_TextChanged);
             this.txt_SellingAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_SellingAmt_KeyDown);
             this.txt_SellingAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_SellingAmt_KeyPress);
             // 
@@ -866,6 +867,7 @@
             // 
             // bttn_Sale
             // 
+            this.bttn_Sale.Enabled = false;
             this.bttn_Sale.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.bttn_Sale.Location = new System.Drawing.Point(777, 9);
             this.bttn_Sale.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

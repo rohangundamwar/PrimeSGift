@@ -51,7 +51,7 @@ namespace PrimeSolutions
             txt_City.ResetText();
             txt_ContactNo.ResetText();
             txt_MobileNo.ResetText();
-            txt_NetAmt.ResetText();
+            txt_NetAmt.Text="0";
             txt_PaidAmt.ResetText();
             txt_Qty.Text = "1";
             txt_Size.ResetText();
@@ -216,13 +216,21 @@ namespace PrimeSolutions
             {
                 if (txt_BarcodeNo.Text != "")
                 {
+                   
                     DataTable dt = _Sale.GetItemDetails(txt_BarcodeNo.Text);
-                    cmb_Category.Text = dt.Rows[0]["category"].ToString();
-                    cmb_SubCategory.Text = dt.Rows[0]["sub_category"].ToString();
-                    txt_SellingAmt.Text = dt.Rows[0]["sale_amt"].ToString();
-                    txt_Size.Text = dt.Rows[0]["size"].ToString();
-                    txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
-                    bttn_Add_Click(sender, e);
+                    if (Convert.ToString(dt.Rows[0]["type"]) == "Purchase")
+                    {
+                        cmb_Category.Text = dt.Rows[0]["category"].ToString();
+                        cmb_SubCategory.Text = dt.Rows[0]["sub_category"].ToString();
+                        txt_SellingAmt.Text = dt.Rows[0]["sale_amt"].ToString();
+                        txt_Size.Text = dt.Rows[0]["size"].ToString();
+                        txt_Amt.Text = (Convert.ToDouble(txt_SellingAmt.Text) * Convert.ToDouble(txt_Qty.Text)).ToString();
+                        bttn_Add_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Item Already Sale'd");
+                    }
                 }
             }
             catch { }
@@ -369,6 +377,7 @@ namespace PrimeSolutions
             Calculate();
             txt_Vat.Text = calculateVAT().ToString();
             txt_NetAmt.Text = Convert.ToString(Convert.ToInt32(txt_Vat.Text) + Convert.ToInt32(txt_TotalAmt.Text));
+            bttn_Sale.Enabled = true;
 
         }
 
@@ -398,7 +407,7 @@ namespace PrimeSolutions
             {
                 if (!_Cust.checkCustomerAccount(cmb_Name.Text))
                 {
-                    _objSQLHelper.gmGetMstID("C", "0");
+                    txt_AccNo.Text = _objSQLHelper.gmGetMstID("C", "0");
                     _Cust.AddCustomerDetails(txt_AccNo.Text, cmb_Name.Text, txt_Address.Text, txt_MobileNo.Text, txt_ContactNo.Text);
                 }
             }
@@ -407,9 +416,6 @@ namespace PrimeSolutions
 
                 for (int i = 0; i < dgv_ItemInfo.Rows.Count; i++)
                 {
-                    if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value == "" ||
-                        dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value == string.Empty)
-                    {
                         string Category = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["Category"].Value);
                         string SubCategory = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SubCategory"].Value);
                         string Amount = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["SellingAmt"].Value);
@@ -418,6 +424,9 @@ namespace PrimeSolutions
                         string AccNo = Convert.ToString(txt_AccNo.Text);
                         string size = Convert.ToString(dgv_ItemInfo.Rows[i].Cells["size"].Value);
 
+                    if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value == string.Empty)
+                        
+                    {
                         _Sale.AddItemDetails(Category, SubCategory, Amount, size, " ", BillNo, AccNo, dtp_Date.Text, "Sale");
                     }
 
@@ -528,6 +537,11 @@ namespace PrimeSolutions
             bttn_Add.Enabled = true;
             Clear();
 
+        }
+
+        private void txt_SellingAmt_TextChanged(object sender, EventArgs e)
+        {
+            txt_TotalAmt.Text = Convert.ToString((Convert.ToInt32(txt_SellingAmt)) * (Convert.ToInt32(txt_Qty.Text)));
         }
     }
 }
