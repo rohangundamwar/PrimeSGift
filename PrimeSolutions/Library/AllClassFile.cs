@@ -48,6 +48,14 @@ namespace PrimeSolutions.ClassFile
             return Qty;
         }
 
+        internal int getQty(string category, string subcategory, string size)
+        {
+            string str1 = "SELECT  qty FROM BillItem Where type = 'Purchase' AND category = '" + category + "' AND sub_category = '" + subcategory + "' AND size = '" + size + "' ";
+            DataTable dt1 = _objsqlhelper.GetDataTable(str1);
+            int Qty = Convert.ToInt32(sumDataTableColumn(dt1, "qty"));
+            return Qty;
+        }
+
         internal object getQty(string subcategory)
         {
             string str1 = "SELECT  qty FROM BillItem Where sub_category = '" + subcategory + "'AND type = 'Purchase' ";

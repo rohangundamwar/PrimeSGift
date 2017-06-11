@@ -120,13 +120,13 @@ namespace PrimeSolutions.Library
             Offset = Offset + 20;
             if (Customer.Rows.Count == 1)
             {
-                graphics.DrawString("  " + CustName,
-            new Font("Courier New", 8),
+                CustName=Customer.Rows[0]["Name"].ToString();
+                CustCont= Customer.Rows[0]["ContactNo"].ToString();
+                graphics.DrawString("  " + CustName,new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset = Offset + 20;
                 graphics.DrawString("  " + CustCont,
-                new Font("Courier New", 8),
-                            new SolidBrush(Color.Black), startX, startY + Offset);
+                new Font("Courier New", 8),new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset = Offset + 20;
             }
            
@@ -141,15 +141,15 @@ namespace PrimeSolutions.Library
             graphics.DrawString( j+ ")" + BillItem.Rows[i]["category"].ToString()+"  " + BillItem.Rows[0]["sub_category"].ToString(),
             new Font("Courier New", 10),
                         new SolidBrush(Color.Black), startX, startY + Offset);
-            Offset = Offset + 20;
-                graphics.DrawString("₹  " + BillItem.Rows[i]["sale_amt"].ToString(),
+            //Offset = Offset + 20;
+                graphics.DrawString("                                ₹" + BillItem.Rows[i]["sale_amt"].ToString(),
             new Font("Courier New", 10),
                         new SolidBrush(Color.Black), startX, startY + Offset);
-                Offset = Offset + 20;
+                Offset = Offset + 10;
                 underLine = "----------";
                 graphics.DrawString(underLine, new Font("Courier New", 8),
                             new SolidBrush(Color.Black), startX, startY + Offset);
-                Offset = Offset + 20;
+                Offset = Offset + 10;
             }
             underLine = "------------------------------------------";
             graphics.DrawString(underLine, new Font("Courier New", 10),

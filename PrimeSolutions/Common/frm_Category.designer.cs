@@ -123,6 +123,7 @@
             this.txt_Category.Name = "txt_Category";
             this.txt_Category.Size = new System.Drawing.Size(275, 20);
             this.txt_Category.TabIndex = 11;
+            this.txt_Category.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Category_KeyDown);
             // 
             // lbl_Category
             // 
