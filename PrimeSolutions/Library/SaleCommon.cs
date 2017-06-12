@@ -142,7 +142,7 @@ namespace PrimeSolutions.Library
             new Font("Courier New", 10),
                         new SolidBrush(Color.Black), startX, startY + Offset);
             //Offset = Offset + 20;
-                graphics.DrawString("                                ₹" + BillItem.Rows[i]["sale_amt"].ToString(),
+                graphics.DrawString("                            ₹" + BillItem.Rows[i]["sale_amt"].ToString(),
             new Font("Courier New", 10),
                         new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset = Offset + 10;

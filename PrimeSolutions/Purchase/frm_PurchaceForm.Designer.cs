@@ -389,6 +389,7 @@
             this.pnl_ItemInfo.Name = "pnl_ItemInfo";
             this.pnl_ItemInfo.Size = new System.Drawing.Size(517, 142);
             this.pnl_ItemInfo.TabIndex = 8;
+            this.pnl_ItemInfo.Tag = "Item";
             // 
             // txt_Size
             // 
@@ -476,6 +477,7 @@
             // txt_Amt
             // 
             this.txt_Amt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Amt.Enabled = false;
             this.txt_Amt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txt_Amt.Location = new System.Drawing.Point(356, 80);
             this.txt_Amt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -569,12 +571,15 @@
             this.cmb_SubCategory.Name = "cmb_SubCategory";
             this.cmb_SubCategory.Size = new System.Drawing.Size(144, 27);
             this.cmb_SubCategory.TabIndex = 7;
-            this.cmb_SubCategory.ValueMember = "SrNo";
+            this.cmb_SubCategory.ValueMember = "SubCategory";
+            this.cmb_SubCategory.Enter += new System.EventHandler(this.cmb_SubCategory_Enter);
             this.cmb_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_SubCategory_KeyDown);
             this.cmb_SubCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_SubCategory_KeyPress);
+            this.cmb_SubCategory.Leave += new System.EventHandler(this.cmb_SubCategory_Leave);
             // 
             // cmb_Category
             // 
+            this.cmb_Category.AllowDrop = true;
             this.cmb_Category.BackColor = System.Drawing.Color.White;
             this.cmb_Category.DisplayMember = "Category";
             this.cmb_Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -584,10 +589,11 @@
             this.cmb_Category.Name = "cmb_Category";
             this.cmb_Category.Size = new System.Drawing.Size(137, 27);
             this.cmb_Category.TabIndex = 6;
-            this.cmb_Category.ValueMember = "SrNo";
+            this.cmb_Category.ValueMember = "Category";
             this.cmb_Category.Enter += new System.EventHandler(this.cmb_Category_Enter);
             this.cmb_Category.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Category_KeyDown);
             this.cmb_Category.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_Category_KeyPress);
+            this.cmb_Category.Leave += new System.EventHandler(this.cmb_Category_Leave);
             // 
             // lbl_Category
             // 
@@ -816,6 +822,7 @@
             // txt_NetAmt
             // 
             this.txt_NetAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_NetAmt.Enabled = false;
             this.txt_NetAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txt_NetAmt.Location = new System.Drawing.Point(167, 80);
             this.txt_NetAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -840,6 +847,7 @@
             // txt_Vat
             // 
             this.txt_Vat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Vat.Enabled = false;
             this.txt_Vat.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txt_Vat.Location = new System.Drawing.Point(167, 46);
             this.txt_Vat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -865,6 +873,7 @@
             // txt_TotalAmt
             // 
             this.txt_TotalAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_TotalAmt.Enabled = false;
             this.txt_TotalAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txt_TotalAmt.Location = new System.Drawing.Point(167, 12);
             this.txt_TotalAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -957,6 +966,7 @@
             this.Controls.Add(this.pnl_Main);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frm_PurchaseForm";
             this.ShowIcon = false;

@@ -43,23 +43,21 @@ namespace PrimeSolutions
 
         private void Masterclear()
         {
-            cmb_Name.SelectedIndex = -1;
-            cmb_Category.SelectedIndex = -1;
-            cmb_SubCategory.SelectedIndex = -1;
+            
+            cmb_Name.ResetText();
             txt_Address.ResetText();
-            txt_BalAmt.Text="0";
             txt_BillNo.ResetText();
             txt_City.ResetText();
             txt_ContactNo.ResetText();
             txt_MobileNo.ResetText();
             txt_PaidAmt.Text = "0";
-            txt_Qty.Text = "1";
-            txt_TotalAmt.ResetText();
             txt_Vat.ResetText();
+            txt_Qty.Text = "1";
             txt_SellingAmt.Text = "0";
             txt_PurchaseAmt.Text = "0";
             txt_Vat.Text = "0";
             txt_TotalAmt.Text = "0";
+            txt_BalAmt.Text = "0";
             dgv_ItemInfo.Rows.Clear();
             txt_NetAmt.Text = "0";
 
@@ -94,9 +92,16 @@ namespace PrimeSolutions
                 txt_City.Text = supplier.Rows[0]["city"].ToString();
                 txt_ContactNo.Text = supplier.Rows[0]["contact_no"].ToString();
                 txt_MobileNo.Text = supplier.Rows[0]["phone_no"].ToString();
-                lbl_AccNo.Text = supplier.Rows[0]["AccNo"].ToString();
             }
-
+            else if (supplier.Rows.Count == 0)
+            {
+                txt_AccNo.Text = _objSQLHelper.gmGetMstID("P", "0");
+                txt_Address.Text = "";
+                txt_City.Text = "";
+                txt_ContactNo.Text = "";
+                txt_MobileNo.Text = "";
+            }
+            
             return supplier;
         }
 
@@ -147,9 +152,9 @@ namespace PrimeSolutions
             {
                 cmb_SubCategory.Focus();
             }
-            if (e.KeyCode == Keys.F10)
+            if (e.KeyCode == Keys.Space)
             {
-                txt_PaidAmt.Focus();
+                txt_VatValue.Focus();
             }
         }
 
@@ -167,7 +172,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Amt.Focus();
+                bttn_Add.Focus();
             }
         }
         
@@ -175,7 +180,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_TotalAmt.Focus();
+                cmb_Category.Focus();
             }
         }
 
@@ -372,13 +377,14 @@ namespace PrimeSolutions
             }
             Calculate();
             bttn_Purchase.Enabled = true;
+            cmb_Category.Focus();
         }
 
         private void Clear()
         {
             cmb_Category.ResetText();
             cmb_SubCategory.ResetText();
-            txt_Qty.Text = "0";
+            txt_Qty.Text = "1";
             txt_SellingAmt.Text = "0";
             txt_PurchaseAmt.Text = "0";
             txt_Size.Text = "";
@@ -445,7 +451,7 @@ namespace PrimeSolutions
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txt_Vat.Focus();
+                txt_PaidAmt.Focus();
             }
         }
 
@@ -698,7 +704,22 @@ namespace PrimeSolutions
 
         private void cmb_Category_Enter(object sender, EventArgs e)
         {
-            //cmb_Category.BackColor = "white";
+            cmb_Category.FlatStyle = System.Windows.Forms.FlatStyle.Popup ;
+        }
+
+        private void cmb_SubCategory_Enter(object sender, EventArgs e)
+        {
+            cmb_SubCategory.FlatStyle= System.Windows.Forms.FlatStyle.Popup;
+        }
+
+        private void cmb_Category_Leave(object sender, EventArgs e)
+        {
+            cmb_Category.FlatStyle = FlatStyle.Standard;
+        }
+
+        private void cmb_SubCategory_Leave(object sender, EventArgs e)
+        {
+            cmb_SubCategory.FlatStyle = FlatStyle.Standard;
         }
     }
 }

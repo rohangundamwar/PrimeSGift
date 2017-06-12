@@ -181,5 +181,46 @@ namespace PrimeSolutions
             _form.Dock = DockStyle.Fill;
             _form.Show();
         }
+
+        private void prefrencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Setting _form = new frm_Setting();
+            _form.ShowDialog();
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.P && Control.ModifierKeys==Keys.Control)
+            {
+                frm_PurchaseForm _form = new frm_PurchaseForm();
+                this.IsMdiContainer = true;
+                _form.TopLevel = false;
+                panel2.Controls.Add(_form);
+                _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                panel2.Height = _form.Height;
+                panel2.Width = _form.Width;
+                _form.Dock = DockStyle.Fill;
+                _form.Show();
+            }
+
+            if (e.KeyCode == Keys.S && Control.ModifierKeys == Keys.Control)
+            {
+                frm_SaleForm _form = new frm_SaleForm();
+                this.IsMdiContainer = true;
+                _form.TopLevel = false;
+                panel2.Controls.Add(_form);
+                _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                panel2.Height = _form.Height;
+                panel2.Width = _form.Width;
+                _form.Dock = DockStyle.Fill;
+                _form.Show();
+            }
+        }
+
+        private void errorReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frm_Error _form = new frm_Error();
+            _form.ShowDialog();
+        }
     }
 }

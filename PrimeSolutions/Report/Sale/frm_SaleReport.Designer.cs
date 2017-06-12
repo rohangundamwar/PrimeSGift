@@ -141,7 +141,8 @@
             this.Controls.Add(this.bttn_generate);
             this.Controls.Add(this.dgv_CustomerItem);
             this.Controls.Add(this.dtp_date);
-           
+            this.KeyPreview = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_SaleReport_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CustomerItem)).EndInit();
             this.ResumeLayout(false);
 

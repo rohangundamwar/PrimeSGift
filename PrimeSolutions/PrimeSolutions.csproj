@@ -91,6 +91,12 @@
     <Compile Include="Common\frm_Category.designer.cs">
       <DependentUpon>frm_Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\frm_Error.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\frm_Error.Designer.cs">
+      <DependentUpon>frm_Error.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\frm_Setting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_Category.resx">
       <DependentUpon>frm_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_Error.resx">
+      <DependentUpon>frm_Error.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\frm_Setting.resx">
+      <DependentUpon>frm_Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\frm_SubCategory.resx">
       <DependentUpon>frm_SubCategory.cs</DependentUpon>

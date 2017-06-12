@@ -142,9 +142,11 @@
             this.Controls.Add(this.lbl_BillNo);
             this.Controls.Add(this.cmb_BillNo);
             this.Controls.Add(this.dgv_BillItem);
+            this.KeyPreview = true;
             this.Name = "SupplierBill";
             this.Text = "SupplierBill";
             this.Load += new System.EventHandler(this.SupplierBill_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SupplierBill_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_BillItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

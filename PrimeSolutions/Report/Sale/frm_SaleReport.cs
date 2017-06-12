@@ -23,6 +23,7 @@ namespace PrimeSolutions.Report.Sale
 
         private void bttn_generate_Click(object sender, EventArgs e)
         {
+            dgv_CustomerItem.Rows.Clear();
            DataTable dt= _s.GetCustomerReport(dtp_date.Text);
             if(dt.Rows.Count>0)
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -50,6 +51,14 @@ namespace PrimeSolutions.Report.Sale
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frm_SaleReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }
