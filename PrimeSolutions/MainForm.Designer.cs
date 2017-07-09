@@ -52,9 +52,9 @@
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prefrencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.errorReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -156,6 +156,7 @@
             this.creditToolStripMenuItem.Name = "creditToolStripMenuItem";
             this.creditToolStripMenuItem.Size = new System.Drawing.Size(191, 24);
             this.creditToolStripMenuItem.Text = "Credit";
+            this.creditToolStripMenuItem.Click += new System.EventHandler(this.creditToolStripMenuItem_Click);
             // 
             // debitToolStripMenuItem
             // 
@@ -272,9 +273,9 @@
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.errorReportToolStripMenuItem,
             this.prefrencesToolStripMenuItem,
-            this.backUpDataToolStripMenuItem});
+            this.backUpDataToolStripMenuItem,
+            this.errorReportToolStripMenuItem});
             this.settingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingToolStripMenuItem.Image = global::PrimeSolutions.Properties.Resources.Settings;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
@@ -282,17 +283,12 @@
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(125, 44);
             this.settingToolStripMenuItem.Text = "Setting";
             // 
-            // errorReportToolStripMenuItem
-            // 
-            this.errorReportToolStripMenuItem.Name = "errorReportToolStripMenuItem";
-            this.errorReportToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.errorReportToolStripMenuItem.Text = "Error Report";
-            // 
             // prefrencesToolStripMenuItem
             // 
             this.prefrencesToolStripMenuItem.Name = "prefrencesToolStripMenuItem";
             this.prefrencesToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.prefrencesToolStripMenuItem.Text = "Prefrences";
+            this.prefrencesToolStripMenuItem.Click += new System.EventHandler(this.prefrencesToolStripMenuItem_Click);
             // 
             // backUpDataToolStripMenuItem
             // 
@@ -300,6 +296,13 @@
             this.backUpDataToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.backUpDataToolStripMenuItem.Text = "BackUp Data";
             this.backUpDataToolStripMenuItem.Click += new System.EventHandler(this.backUpDataToolStripMenuItem_Click);
+            // 
+            // errorReportToolStripMenuItem
+            // 
+            this.errorReportToolStripMenuItem.Name = "errorReportToolStripMenuItem";
+            this.errorReportToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.errorReportToolStripMenuItem.Text = "Error Report";
+            this.errorReportToolStripMenuItem.Click += new System.EventHandler(this.errorReportToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -411,11 +414,13 @@
             this.ClientSize = new System.Drawing.Size(669, 351);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);

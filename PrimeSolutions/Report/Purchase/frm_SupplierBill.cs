@@ -41,12 +41,21 @@ namespace PrimeSolutions.Report.Purchase
 
         private void bttn_excel_Click(object sender, EventArgs e)
         {
+            DataTable dt = _p.GetSupplierFromBillNo(dgv_SupplierBill.Rows[0].Cells["BillNo"].Value.ToString());
             _e.exporttoexcel(dgv_SupplierBill, "SupplierBillList", dtp1.Value.ToString("dd_MM_yyyy"));
         }
 
         private void bttn_close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frm_SupplierBill_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

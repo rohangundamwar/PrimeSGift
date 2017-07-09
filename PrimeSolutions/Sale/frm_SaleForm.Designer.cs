@@ -458,6 +458,7 @@
             // txt_Amt
             // 
             this.txt_Amt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Amt.Enabled = false;
             this.txt_Amt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txt_Amt.Location = new System.Drawing.Point(358, 77);
             this.txt_Amt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -546,8 +547,8 @@
             // cmb_SubCategory
             // 
             this.cmb_SubCategory.AllowDrop = true;
-            this.cmb_SubCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmb_SubCategory.DisplayMember = "subcategory";
+            this.cmb_SubCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_SubCategory.FormattingEnabled = true;
             this.cmb_SubCategory.Location = new System.Drawing.Point(358, 40);
             this.cmb_SubCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -555,14 +556,15 @@
             this.cmb_SubCategory.Size = new System.Drawing.Size(136, 27);
             this.cmb_SubCategory.TabIndex = 7;
             this.cmb_SubCategory.ValueMember = "SubCategory";
+            this.cmb_SubCategory.Enter += new System.EventHandler(this.cmb_SubCategory_Enter);
             this.cmb_SubCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_SubCategory_KeyDown);
             this.cmb_SubCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_SubCategory_KeyPress);
             // 
             // cmb_Category
             // 
             this.cmb_Category.AllowDrop = true;
-            this.cmb_Category.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmb_Category.DisplayMember = "Category";
+            this.cmb_Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_Category.FormattingEnabled = true;
             this.cmb_Category.Location = new System.Drawing.Point(116, 40);
             this.cmb_Category.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -570,6 +572,7 @@
             this.cmb_Category.Size = new System.Drawing.Size(136, 27);
             this.cmb_Category.TabIndex = 6;
             this.cmb_Category.ValueMember = "Category";
+            this.cmb_Category.Enter += new System.EventHandler(this.cmb_Category_Enter);
             this.cmb_Category.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmb_Category_KeyDown);
             this.cmb_Category.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmb_Category_KeyPress);
             // 
@@ -709,16 +712,18 @@
             this.txt_TaxPer.Name = "txt_TaxPer";
             this.txt_TaxPer.Size = new System.Drawing.Size(41, 19);
             this.txt_TaxPer.TabIndex = 31;
+            this.txt_TaxPer.TextChanged += new System.EventHandler(this.txt_TaxPer_TextChanged);
             // 
             // txt_BalAmt
             // 
             this.txt_BalAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_BalAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_BalAmt.Location = new System.Drawing.Point(167, 161);
+            this.txt_BalAmt.Location = new System.Drawing.Point(166, 124);
             this.txt_BalAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_BalAmt.Name = "txt_BalAmt";
             this.txt_BalAmt.Size = new System.Drawing.Size(144, 19);
             this.txt_BalAmt.TabIndex = 30;
+            this.txt_BalAmt.TextChanged += new System.EventHandler(this.txt_BalAmt_TextChanged);
             this.txt_BalAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_BalAmt_KeyDown);
             this.txt_BalAmt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_BalAmt_KeyPress);
             // 
@@ -727,18 +732,18 @@
             this.lbl_BalanceAmt.AutoSize = true;
             this.lbl_BalanceAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_BalanceAmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lbl_BalanceAmt.Location = new System.Drawing.Point(12, 162);
+            this.lbl_BalanceAmt.Location = new System.Drawing.Point(12, 125);
             this.lbl_BalanceAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_BalanceAmt.Name = "lbl_BalanceAmt";
-            this.lbl_BalanceAmt.Size = new System.Drawing.Size(95, 16);
+            this.lbl_BalanceAmt.Size = new System.Drawing.Size(76, 16);
             this.lbl_BalanceAmt.TabIndex = 29;
-            this.lbl_BalanceAmt.Text = "Balance Amt";
+            this.lbl_BalanceAmt.Text = "Round Off";
             // 
             // txt_PaidAmt
             // 
             this.txt_PaidAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_PaidAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_PaidAmt.Location = new System.Drawing.Point(167, 127);
+            this.txt_PaidAmt.Location = new System.Drawing.Point(166, 157);
             this.txt_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_PaidAmt.Name = "txt_PaidAmt";
             this.txt_PaidAmt.Size = new System.Drawing.Size(144, 19);
@@ -751,7 +756,7 @@
             this.lbl_PaidAmt.AutoSize = true;
             this.lbl_PaidAmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_PaidAmt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lbl_PaidAmt.Location = new System.Drawing.Point(12, 128);
+            this.lbl_PaidAmt.Location = new System.Drawing.Point(12, 158);
             this.lbl_PaidAmt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_PaidAmt.Name = "lbl_PaidAmt";
             this.lbl_PaidAmt.Size = new System.Drawing.Size(74, 16);
@@ -761,8 +766,9 @@
             // txt_NetAmt
             // 
             this.txt_NetAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_NetAmt.Enabled = false;
             this.txt_NetAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_NetAmt.Location = new System.Drawing.Point(167, 93);
+            this.txt_NetAmt.Location = new System.Drawing.Point(166, 91);
             this.txt_NetAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_NetAmt.Name = "txt_NetAmt";
             this.txt_NetAmt.Size = new System.Drawing.Size(144, 19);
@@ -775,7 +781,7 @@
             this.lbl_NetAmount.AutoSize = true;
             this.lbl_NetAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_NetAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lbl_NetAmount.Location = new System.Drawing.Point(12, 94);
+            this.lbl_NetAmount.Location = new System.Drawing.Point(12, 92);
             this.lbl_NetAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_NetAmount.Name = "lbl_NetAmount";
             this.lbl_NetAmount.Size = new System.Drawing.Size(62, 16);
@@ -785,8 +791,9 @@
             // txt_Vat
             // 
             this.txt_Vat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_Vat.Enabled = false;
             this.txt_Vat.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_Vat.Location = new System.Drawing.Point(167, 59);
+            this.txt_Vat.Location = new System.Drawing.Point(166, 58);
             this.txt_Vat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_Vat.Name = "txt_Vat";
             this.txt_Vat.Size = new System.Drawing.Size(144, 19);
@@ -799,7 +806,7 @@
             this.lbl_Vat.AutoSize = true;
             this.lbl_Vat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Vat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lbl_Vat.Location = new System.Drawing.Point(12, 60);
+            this.lbl_Vat.Location = new System.Drawing.Point(12, 59);
             this.lbl_Vat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Vat.Name = "lbl_Vat";
             this.lbl_Vat.Size = new System.Drawing.Size(31, 16);
@@ -809,8 +816,9 @@
             // txt_TotalAmt
             // 
             this.txt_TotalAmt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_TotalAmt.Enabled = false;
             this.txt_TotalAmt.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txt_TotalAmt.Location = new System.Drawing.Point(167, 25);
+            this.txt_TotalAmt.Location = new System.Drawing.Point(166, 25);
             this.txt_TotalAmt.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_TotalAmt.Name = "txt_TotalAmt";
             this.txt_TotalAmt.Size = new System.Drawing.Size(144, 19);

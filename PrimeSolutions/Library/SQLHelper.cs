@@ -28,6 +28,7 @@ namespace PrimeSolutions.Library
         {
 
             string line;
+            
 
             // Read the file and display it line by line.
             try
@@ -35,14 +36,10 @@ namespace PrimeSolutions.Library
                 System.IO.StreamReader file = new System.IO.StreamReader(Environment.CurrentDirectory + "\\ConnectionString.txt");
                 while ((line = file.ReadLine()) != null)
                 {
-                    //string Path= Environment.CurrentDirectory;
-                    //clsVariable.ConnectionString = "Data Source=.\\SQLEXPRESS;AttachDbFilename="+Environment.CurrentDirectory+"\\JewelleryData.mdf;Integrated Security=True;User Instance=True";
-                    // string[] txtsplit = line.Split('=');
-                    // clsVariable.ConnectionString = txtsplit[0] + "=" + txtsplit[1] + "=" + Environment.CurrentDirectory + txtsplit[2] + "=" + txtsplit[3];
                     clsVariable.ConnectionString = line;
-                    //   "+Environment.CurrentDirectory+"
-
-
+                    con = new SqlConnection(line);
+                    clsVariable.DatabaseName = con.Database;
+                    clsVariable.ConnectionDatabase = con.Database;
                 }
 
                 file.Close();

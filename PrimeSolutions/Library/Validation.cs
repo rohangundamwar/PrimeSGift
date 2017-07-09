@@ -85,11 +85,8 @@ namespace PrimeSolutions.Library
            
         }
    
-
-        
-    bool bln;
+    
     string pat;
-    bool valbl = false;
     public bool authontic()
     {
         bool returnValue = false;

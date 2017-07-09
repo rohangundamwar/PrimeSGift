@@ -157,9 +157,11 @@
             this.Controls.Add(this.bttn_close);
             this.Controls.Add(this.bttn_excel);
             this.Controls.Add(this.dtp1);
+            this.KeyPreview = true;
             this.Name = "frm_SupplierBill";
             this.Text = "frm_SupplierBill";
             this.Load += new System.EventHandler(this.frm_SupplierBill_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_SupplierBill_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SupplierBill)).EndInit();
             this.ResumeLayout(false);
 

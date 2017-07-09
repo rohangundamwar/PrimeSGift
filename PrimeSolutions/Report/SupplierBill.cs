@@ -16,8 +16,7 @@ namespace PrimeSolutions.Report
         Library.PurchaseCommon _p = new Library.PurchaseCommon();
         AllClassFile _C = new AllClassFile();
         ExportToExcel _e = new ExportToExcel();
-
-        DataTable SupplierItem;
+        
         public SupplierBill()
         {
             InitializeComponent();
@@ -38,7 +37,7 @@ namespace PrimeSolutions.Report
                 dgv_BillItem.Rows[i].Cells["Category"].Value = SupplierItem.Rows[i]["category"].ToString();
                 dgv_BillItem.Rows[i].Cells["SubCategory"].Value = SupplierItem.Rows[i]["sub_category"].ToString();
                 dgv_BillItem.Rows[i].Cells["Size"].Value = SupplierItem.Rows[i]["size"].ToString();
-                int qty = _C.getQty(SupplierItem.Rows[i]["category"].ToString(), SupplierItem.Rows[i]["sub_category"].ToString(), SupplierItem.Rows[i]["size"].ToString(),cmb_BillNo.Text);
+                int qty = _C.getQtySupplier(SupplierItem.Rows[i]["category"].ToString(), SupplierItem.Rows[i]["sub_category"].ToString(), SupplierItem.Rows[i]["size"].ToString(),cmb_BillNo.Text);
                 dgv_BillItem.Rows[i].Cells["Quantity"].Value = qty.ToString();
 
             } 
@@ -52,7 +51,17 @@ namespace PrimeSolutions.Report
 
         private void bttn_Excel_Click(object sender, EventArgs e)
         {
-            _e.exporttoexcel(dgv_BillItem, "Supplier Bill Item", dtp_date.Value.ToString("dd_MM_yyyy"));
+            DataTable dt = _p.GetSupplierFromBillNo(cmb_BillNo.Text);
+            _e.exporttoexcel(dgv_BillItem,dt,"Supplier Bill Item", dtp_date.Value.ToString("dd_MM_yyyy"));
+            
+        }
+
+        private void SupplierBill_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

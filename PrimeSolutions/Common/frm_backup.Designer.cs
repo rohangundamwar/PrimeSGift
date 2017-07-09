@@ -38,18 +38,20 @@
             // lbl_Message
             // 
             this.lbl_Message.AutoSize = true;
-            this.lbl_Message.Location = new System.Drawing.Point(39, 61);
+            this.lbl_Message.Location = new System.Drawing.Point(71, 61);
             this.lbl_Message.Name = "lbl_Message";
-            this.lbl_Message.Size = new System.Drawing.Size(85, 13);
+            this.lbl_Message.Size = new System.Drawing.Size(94, 13);
             this.lbl_Message.TabIndex = 0;
-            this.lbl_Message.Text = "DataBase Name";
+            this.lbl_Message.Text = "DataBase Name : ";
             // 
             // bttn_cancel
             // 
-            this.bttn_cancel.BackColor = System.Drawing.Color.Red;
+            this.bttn_cancel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.bttn_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttn_cancel.ForeColor = System.Drawing.Color.OrangeRed;
             this.bttn_cancel.Location = new System.Drawing.Point(212, 144);
             this.bttn_cancel.Name = "bttn_cancel";
-            this.bttn_cancel.Size = new System.Drawing.Size(75, 23);
+            this.bttn_cancel.Size = new System.Drawing.Size(87, 28);
             this.bttn_cancel.TabIndex = 1;
             this.bttn_cancel.Text = "Cancel";
             this.bttn_cancel.UseVisualStyleBackColor = false;
@@ -57,19 +59,22 @@
             // txt_DatabaseName
             // 
             this.txt_DatabaseName.AutoSize = true;
-            this.txt_DatabaseName.Location = new System.Drawing.Point(130, 61);
+            this.txt_DatabaseName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_DatabaseName.Location = new System.Drawing.Point(174, 61);
             this.txt_DatabaseName.Name = "txt_DatabaseName";
-            this.txt_DatabaseName.Size = new System.Drawing.Size(53, 13);
+            this.txt_DatabaseName.Size = new System.Drawing.Size(61, 13);
             this.txt_DatabaseName.TabIndex = 2;
             this.txt_DatabaseName.Text = "Database";
             // 
             // bttn_backup
             // 
-            this.bttn_backup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bttn_backup.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.bttn_backup.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttn_backup.ForeColor = System.Drawing.Color.LightGreen;
             this.bttn_backup.Location = new System.Drawing.Point(42, 144);
             this.bttn_backup.Margin = new System.Windows.Forms.Padding(0);
             this.bttn_backup.Name = "bttn_backup";
-            this.bttn_backup.Size = new System.Drawing.Size(75, 23);
+            this.bttn_backup.Size = new System.Drawing.Size(87, 28);
             this.bttn_backup.TabIndex = 3;
             this.bttn_backup.Text = "Backup";
             this.bttn_backup.UseVisualStyleBackColor = false;

@@ -39,7 +39,7 @@ namespace PrimeSolutions.Common
 
         private void frm_backup_Load(object sender, EventArgs e)
         {
-            txt_DatabaseName.Text = _objSqlHelper.GetConSting();
+            txt_DatabaseName.Text = clsVariable.ConnectionDatabase;
         }
 
         public void blank(string str)
@@ -50,7 +50,7 @@ namespace PrimeSolutions.Common
                 saveFileDialog1.ShowDialog();
                 string s = null;
                 s = saveFileDialog1.FileName;
-                string stru = "Backup database " + clsVariable.ConnectionDatabase + " to disk='" + s + "'";
+                string stru = "Backup database " + clsVariable.ConnectionDatabase + " to disk='"+s+"'";
                 _objSqlHelper.ExecuteSql(stru);
 
                 MessageBox.Show("Your Database Backup is done");

@@ -9,10 +9,10 @@ namespace PrimeSolutions.Library
     class Stock
     {
         SQLHelper _sql = new SQLHelper();
-        DataTable stock, category, subcategory, size, quantity;
+        DataTable  category, subcategory, size;
         public DataTable GetStock()
         {
-            DataTable dt1, dt2, dt3, dt5;
+            DataTable dt1, dt2, dt3;
             DataTable dt4 = new DataTable();
             dt4.Columns.Add("category");
             dt4.Columns.Add("SubCategory");

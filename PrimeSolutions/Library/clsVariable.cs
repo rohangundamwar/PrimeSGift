@@ -8,12 +8,10 @@ namespace PrimeSolutions.Library
     public class clsVariable
     {
         public static string ConnectionString = "";
-
+        
         public static string DatabaseName { get; set; }
 
-        public static string ConnectionDatabase { get; set; }
-       
-        //k
-        
+        public static string ConnectionDatabase="";
+
     }
 }

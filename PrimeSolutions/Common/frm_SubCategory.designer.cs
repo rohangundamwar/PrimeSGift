@@ -210,6 +210,7 @@
             this.Controls.Add(this.dgv_SubCategory);
             this.Controls.Add(this.pnl_Top);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "frm_SubCategory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frm_Category";

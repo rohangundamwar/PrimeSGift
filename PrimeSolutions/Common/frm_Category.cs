@@ -1,4 +1,5 @@
 ﻿using PrimeSolutions.ClassFile;
+using PrimeSolutions.Library;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace PrimeSolutions.Common
             InitializeComponent();
         }
         AllClassFile _objCustmor = new AllClassFile();
+        ErrorLog _e = new ErrorLog(); 
         
         private void frm_Category_Load(object sender, EventArgs e)
         {
@@ -71,9 +73,9 @@ namespace PrimeSolutions.Common
                     txt_Category.Text = dgv_Category.Rows[dgv_Category.CurrentRow.Index].Cells["Category"].Value.ToString();
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-               
+                _e.AddException(ex, "Category");
             }
         }
 
@@ -101,6 +103,7 @@ namespace PrimeSolutions.Common
             txt_Category.ResetText();
             lbl_SrNo.ResetText();
             MessageBox.Show("Deleted SuccessFully");
+                bttn_Add.Enabled = true;
             }
         }
 
