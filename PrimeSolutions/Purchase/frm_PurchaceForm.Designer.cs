@@ -70,6 +70,7 @@
             this.lbl_PurchaseAmt = new System.Windows.Forms.Label();
             this.lbl_SubCategory = new System.Windows.Forms.Label();
             this.dgv_ItemInfo = new System.Windows.Forms.DataGridView();
+            this.Chk = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -640,6 +641,7 @@
             this.dgv_ItemInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_ItemInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_ItemInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Chk,
             this.Category,
             this.SubCategory,
             this.size,
@@ -650,57 +652,65 @@
             this.PBill});
             this.dgv_ItemInfo.Location = new System.Drawing.Point(4, 341);
             this.dgv_ItemInfo.Name = "dgv_ItemInfo";
-            this.dgv_ItemInfo.ReadOnly = true;
             this.dgv_ItemInfo.RowHeadersWidth = 30;
             this.dgv_ItemInfo.Size = new System.Drawing.Size(652, 201);
             this.dgv_ItemInfo.TabIndex = 9;
             this.dgv_ItemInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ItemInfo_CellClick);
             // 
+            // Chk
+            // 
+            this.Chk.FillWeight = 50F;
+            this.Chk.HeaderText = "Chk";
+            this.Chk.Name = "Chk";
+            this.Chk.ReadOnly = true;
+            this.Chk.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Chk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // Category
             // 
-            this.Category.FillWeight = 96.51263F;
+            this.Category.FillWeight = 96.11028F;
             this.Category.HeaderText = "Category";
             this.Category.Name = "Category";
             this.Category.ReadOnly = true;
             // 
             // SubCategory
             // 
-            this.SubCategory.FillWeight = 96.51263F;
+            this.SubCategory.FillWeight = 96.11028F;
             this.SubCategory.HeaderText = "SubCategory";
             this.SubCategory.Name = "SubCategory";
             this.SubCategory.ReadOnly = true;
             // 
             // size
             // 
-            this.size.FillWeight = 50F;
+            this.size.FillWeight = 49.79155F;
             this.size.HeaderText = "size";
             this.size.Name = "size";
             this.size.ReadOnly = true;
             // 
             // PurchaseAmt
             // 
-            this.PurchaseAmt.FillWeight = 96.51263F;
+            this.PurchaseAmt.FillWeight = 96.11028F;
             this.PurchaseAmt.HeaderText = "PurchaseAmt";
             this.PurchaseAmt.Name = "PurchaseAmt";
             this.PurchaseAmt.ReadOnly = true;
             // 
             // Qty
             // 
-            this.Qty.FillWeight = 39.77171F;
+            this.Qty.FillWeight = 39.6059F;
             this.Qty.HeaderText = "Qty";
             this.Qty.Name = "Qty";
             this.Qty.ReadOnly = true;
             // 
             // SellingAmt
             // 
-            this.SellingAmt.FillWeight = 96.51263F;
+            this.SellingAmt.FillWeight = 96.11028F;
             this.SellingAmt.HeaderText = "SellingAmt";
             this.SellingAmt.Name = "SellingAmt";
             this.SellingAmt.ReadOnly = true;
             // 
             // TotalAmt
             // 
-            this.TotalAmt.FillWeight = 96.51263F;
+            this.TotalAmt.FillWeight = 96.11028F;
             this.TotalAmt.HeaderText = "TotalAmt";
             this.TotalAmt.Name = "TotalAmt";
             this.TotalAmt.ReadOnly = true;
@@ -1055,6 +1065,7 @@
         private System.Windows.Forms.TextBox txt_VatValue;
         private System.Windows.Forms.TextBox txt_Size;
         private System.Windows.Forms.Label lbl_size;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Chk;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn size;

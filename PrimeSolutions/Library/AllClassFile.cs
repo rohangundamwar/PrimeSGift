@@ -127,7 +127,14 @@ namespace PrimeSolutions.ClassFile
 
         internal DataTable getBarcodeItem(string start, string end)
         {
-            string str = "Select  Barcode,category,sub_category,purchase_amt,sale_amt,qty,Total From BillItem Where (Barcode != '') AND (CONVERT(DateTime,BillItem.SoftDate, 103) >= CONVERT(DateTime, '" + start + "', 103))  AND (CONVERT(DateTime, BillItem.SoftDate, 103) <= CONVERT(DateTime, '" + end + "', 103)) And type = 'Purchase'";
+            string str = "Select  * From BillItem Where (Barcode != '') AND (CONVERT(DateTime,BillItem.SoftDate, 103) >= CONVERT(DateTime, '" + start + "', 103))  AND (CONVERT(DateTime, BillItem.SoftDate, 103) <= CONVERT(DateTime, '" + end + "', 103)) And type = 'Purchase'";
+            DataTable dt = _objsqlhelper.GetDataTable(str);
+            return dt;
+        }
+
+        internal DataTable getBarcodeItemByBilNo(string PBillNo)
+        {
+            string str = "Select  * From BillItem Where (Barcode != '') AND PurchaseBill = '" + PBillNo + "' And type = 'Purchase'";
             DataTable dt = _objsqlhelper.GetDataTable(str);
             return dt;
         }
@@ -195,7 +202,7 @@ namespace PrimeSolutions.ClassFile
 
         public DataTable GetSubCategoryByCategory(string category)
         {
-            string str = "SELECT  Distinct sub_category,PurchaseBill FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
+            string str = "SELECT  Distinct sub_category FROM BillItem Where type = 'Purchase' AND category = '" + category+"' ";
             DataTable dt = _objsqlhelper.GetDataTable(str);
 
             return dt;

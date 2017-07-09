@@ -33,12 +33,12 @@ namespace PrimeSolutions
         private void frm_PurchaseForm_Load(object sender, EventArgs e)
         {
             Masterclear();
-            cmb_Name.Select();
             this.BringToFront();
             Clear();
             cmb_Category.DataSource = _a.FillCategory();
             cmb_SubCategory.DataSource = _a.FillSubCategory();
             txt_TaxPer.Text =Convert.ToString(_common.GetTax());
+            cmb_Name.Select();
 
         }
 
@@ -67,6 +67,7 @@ namespace PrimeSolutions
             txt_BarcodeNo.ResetText();
             dgv_ItemInfo.Rows.Clear();
             bttn_Sale.Enabled = false;
+            cmb_Name.Select();
             
         }
         
@@ -444,7 +445,7 @@ namespace PrimeSolutions
                     if (dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value == "" ||dgv_ItemInfo.Rows[i].Cells["BarcodeNo"].Value == string.Empty)
                         
                     {
-                        _Sale.AddItemDetails(Category, SubCategory, Amount, size, " ", BillNo, AccNo, dtp_Date.Text, "Sale");
+                        _Sale.AddItemDetails(Category, SubCategory, Amount, size, " ", BillNo, AccNo, dtp_Date.Value.ToString("dd/MM/yyyy"), "Sale");
                     }
 
                     else
@@ -453,7 +454,7 @@ namespace PrimeSolutions
                     }
 
                 }
-                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, txt_TotalAmt.Text, txt_Vat.Text, txt_NetAmt.Text, " ", dtp_Date.Text);
+                _Sale.AddBillDetails(txt_BillNo.Text, txt_AccNo.Text, txt_TotalAmt.Text, txt_Vat.Text, txt_NetAmt.Text, " ", dtp_Date.Value.ToString("dd/MM/yyyy"));
 
             }
             catch (Exception ex)

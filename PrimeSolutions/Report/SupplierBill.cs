@@ -16,8 +16,7 @@ namespace PrimeSolutions.Report
         Library.PurchaseCommon _p = new Library.PurchaseCommon();
         AllClassFile _C = new AllClassFile();
         ExportToExcel _e = new ExportToExcel();
-
-        DataTable SupplierItem;
+        
         public SupplierBill()
         {
             InitializeComponent();
@@ -52,7 +51,9 @@ namespace PrimeSolutions.Report
 
         private void bttn_Excel_Click(object sender, EventArgs e)
         {
-            _e.exporttoexcel(dgv_BillItem, "Supplier Bill Item", dtp_date.Value.ToString("dd_MM_yyyy"));
+            DataTable dt = _p.GetSupplierFromBillNo(cmb_BillNo.Text);
+            _e.exporttoexcel(dgv_BillItem,dt,"Supplier Bill Item", dtp_date.Value.ToString("dd_MM_yyyy"));
+            
         }
 
         private void SupplierBill_KeyDown(object sender, KeyEventArgs e)

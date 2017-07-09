@@ -40,5 +40,26 @@ namespace PrimeSolutions.Library
             dt = _sql.GetDataTable(str);
             return dt;
         }
+
+        public DataTable GetSupplierFromBillNo(string BillNo)
+        {
+
+            DataTable dt;
+            string str = "select AccNo from PurchaseBillMaster where BillNo='"+BillNo+"'";
+            string str1 = "Select * from SupplierMaster where AccNO='" + _sql.ExecuteScalar(str) + "'";
+            dt = _sql.GetDataTable(str1);
+            return dt;
+        }
+
+        public DataTable GetSupplierFromAccNo(string AccNo)
+        {
+
+            DataTable dt;
+            string str1 = "Select * from SupplierMaster where AccNO='"+AccNo+"'";
+            dt = _sql.GetDataTable(str1);
+            return dt;
+        }
+
+
     }
 }

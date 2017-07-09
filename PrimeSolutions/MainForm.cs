@@ -222,5 +222,10 @@ namespace PrimeSolutions
             frm_Error _form = new frm_Error();
             _form.ShowDialog();
         }
+
+        private void creditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

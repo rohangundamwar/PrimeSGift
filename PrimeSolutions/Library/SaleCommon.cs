@@ -7,12 +7,15 @@ using System.Data;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Drawing;
-
+using PrimeSolutions.ClassFile;
 namespace PrimeSolutions.Library
 {
     public class SaleCommon
     {
         SQLHelper _sql = new SQLHelper();
+        AllClassFile _a = new AllClassFile();
+        DataTable dtSett;
+
         string BillNo;
         public void AddBillDetails(string BillNo, string CustomerId, string BillAmt, string VAT, string TotalAmt, string Discount, string date)
         {
@@ -39,6 +42,8 @@ namespace PrimeSolutions.Library
             return dt;
         }
 
+        
+         
         private DataTable GetBillDetails(string BillNo)
         {
             string str = "Select * from SaleBillMaster where BillNo = '" + BillNo + "'";
@@ -95,7 +100,8 @@ namespace PrimeSolutions.Library
             DataTable BillItem = GetBillItem(Billx);
             DataTable company = GetCompanydetails();
             DataTable Customer = GetCustomerByBill(Billx);
-            
+            dtSett = _a.getallssetting();
+
             Graphics graphics = e.Graphics;
             Font font = new Font("Courier New", 10);
             float fontHeight = font.GetHeight();
@@ -111,12 +117,12 @@ namespace PrimeSolutions.Library
             Offset = Offset + 40;
             string underLine = "------------------------------------------";
             graphics.DrawString(underLine, new Font("Courier New", 8),
-                        new SolidBrush(Color.Black), startX, startY + Offset);
+            new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
             //Customer&BillDetails
             graphics.DrawString("BillNo: " + BillDetail.Rows[0]["BillNo"].ToString(),
             new Font("Courier New", 10),
-                        new SolidBrush(Color.Black), startX, startY + Offset);
+            new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
             if (Customer.Rows.Count == 1)
             {
@@ -129,9 +135,8 @@ namespace PrimeSolutions.Library
                 new Font("Courier New", 8),new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset = Offset + 20;
             }
-           
-            underLine = "------------------------------------------";
-            graphics.DrawString(underLine, new Font("Courier New", 10),
+
+            graphics.DrawString(underLine, new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
             //BillItem
@@ -139,52 +144,68 @@ namespace PrimeSolutions.Library
             {
                 j = i + 1;
             graphics.DrawString( j+ ")" + BillItem.Rows[i]["category"].ToString()+"  " + BillItem.Rows[0]["sub_category"].ToString(),
-            new Font("Courier New", 10),
+            new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
-            //Offset = Offset + 20;
-                graphics.DrawString("                            ₹" + BillItem.Rows[i]["sale_amt"].ToString(),
-            new Font("Courier New", 10),
+            Offset = Offset + 10;
+                graphics.DrawString("₹" + BillItem.Rows[i]["sale_amt"].ToString(),
+            new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
-                Offset = Offset + 10;
-                underLine = "----------";
-                graphics.DrawString(underLine, new Font("Courier New", 8),
-                            new SolidBrush(Color.Black), startX, startY + Offset);
-                Offset = Offset + 10;
+                Offset = Offset + 15;
+               
             }
-            underLine = "------------------------------------------";
-            graphics.DrawString(underLine, new Font("Courier New", 10),
+            
+            graphics.DrawString(underLine, new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
             //BillPayDetails
             graphics.DrawString("Bill Amount: ₹ " + BillDetail.Rows[0]["BillAmount"].ToString(), new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
-            graphics.DrawString("VAT@6 %: ₹ " + BillDetail.Rows[0]["VAT"].ToString(), new Font("Courier New", 8),
+            graphics.DrawString(dtSett.Rows[0]["Tax"]+"@"+ dtSett.Rows[0]["TaxPer"]+"% :" + BillDetail.Rows[0]["VAT"].ToString(), new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
             graphics.DrawString("Total Amount: ₹ " + BillDetail.Rows[0]["TotalAmount"].ToString(), new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
-            underLine = "------------------------------------------";
-            graphics.DrawString(underLine, new Font("Courier New", 10),
+            
+            graphics.DrawString(underLine, new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
             Offset = Offset + 20;
-            graphics.DrawString("VAT No: " + company.Rows[0]["VATNo"].ToString()+"V", new Font("Courier New", 10),
+            graphics.DrawString("GST No: " + company.Rows[0]["VATNo"].ToString(), new Font("Courier New", 10),
                         new SolidBrush(Color.Black), startX, startY + Offset);
-            Offset = Offset + 20;
-            graphics.DrawString("CST TIN No: " + company.Rows[0]["VATNo"].ToString()+"C", new Font("Courier New", 10),
-                        new SolidBrush(Color.Black), startX, startY + Offset);
+            
             Offset = Offset + 20;
 
             //Footer
-            graphics.DrawString("Thank You \n Visit Again !", new Font("Courier New", 8),
+            graphics.DrawString("      Thank You!  Visit Again !", new Font("Courier New", 8),
                         new SolidBrush(Color.Black), startX, startY + Offset);
 
         }
 
-        public DataTable GetCustomerReport(string date)
+        public DataTable GetCustomerReport(string from, string to)
         {
-            string str = "Select * From SaleBillMaster where Date = '" + date + "'";
+            string From = "";
+            string To = "";
+            DateTime date1 = Convert.ToDateTime(from);
+            DateTime date2 = Convert.ToDateTime(to);
+
+            while (From == "")
+            {
+                from = date1.ToString("dd/MM/yyyy");
+                string str1 = "select SrNo from SaleBillMaster where date = '" + from + "'";
+                From = _sql.ExecuteScalar(str1);
+                date1 = date1.AddDays(1);
+
+            }
+            while (To == "")
+            {
+                to = date2.ToString("dd/MM/yyyy");
+                string str1 = "select Max(SrNo) from SaleBillMaster where date = '" + to + "'";
+                To = _sql.ExecuteScalar(str1);
+                date2 = date2.AddDays(-1);
+            }
+
+            string str = "Select * From SaleBillMaster where SrNo between '"+From+"' AND '"+ To +"'";
             DataTable dt = _sql.GetDataTable(str);
             return dt;
         }

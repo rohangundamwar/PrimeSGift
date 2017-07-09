@@ -47,12 +47,7 @@ namespace PrimeSolutions.Library
             double tax = Convert.ToDouble(_objSqlhelper.ExecuteScalar(str));
             return tax; 
         } 
-
-        public void updateDatafield()
-        {
-            string str = "";
-        }
-
+        
         public void insertServerData( string user, string password)
         {
             string str = "Insert InTo ServerUpload (userId , password) Values ('" + user + "','" + password + "')";

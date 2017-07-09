@@ -44,18 +44,19 @@ namespace PrimeSolutions.Report
                     dt2 = _objstock.GetSizeByCatAndSubCat(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["sub_category"].ToString());
                     for (int k = 0; k < dt2.Rows.Count; k++)
                     {
+                        
                         dgv_stock.Rows.Add();
                         x = x + 1;
                         dgv_stock.Rows[gcount].Cells["SrNo"].Value = Convert.ToString(x);
                         dgv_stock.Rows[gcount].Cells["Category"].Value = dt3.Rows[i]["category"].ToString();
                         dgv_stock.Rows[gcount].Cells["SubCategory"].Value = dt1.Rows[j]["sub_category"].ToString();
-                        DataTable X = _objstock.GetSizeByCatAndSubCat(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["sub_category"].ToString());
-                        dgv_stock.Rows[gcount].Cells["Size"].Value = X.Rows[k]["size"].ToString();
-                        DataTable Q = _objstock.GetSizeByCatAndSubCat(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["sub_category"].ToString());
+                        //DataTable X = _objstock.GetSizeByCatAndSubCat(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["sub_category"].ToString());
+                        dgv_stock.Rows[gcount].Cells["Size"].Value = dt2.Rows[k]["size"].ToString();
+                        //DataTable Q = _objstock.GetSizeByCatAndSubCat(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["sub_category"].ToString());
 
-                        if (Q.Rows.Count > 0)
+                        if (dt2.Rows.Count > 0)
                         {
-                            a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["sub_category"].ToString(), X.Rows[k]["size"].ToString()));
+                            a = Convert.ToString(_objstock.getQty(dt3.Rows[i]["category"].ToString(), dt1.Rows[j]["sub_category"].ToString(), dt2.Rows[k]["size"].ToString()));
                             dgv_stock.Rows[gcount].Cells["Quantity"].Value = a.ToString();
                         }
                         else
